@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "Author: YOUR NAME HERE"
+title: "Decision Analysis - Bayesian Networks"
+author: "Author: Can Aytöre"
 date: "Last Update: `r Sys.Date()`"
 favicon: "favicon.jpg"
 site: bookdown::bookdown_site
