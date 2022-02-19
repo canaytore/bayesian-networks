@@ -1,0 +1,25 @@
+--- 
+title: "YOUR TITLE HERE"
+author: "Author: YOUR NAME HERE"
+date: "Last Update: `r Sys.Date()`"
+favicon: "favicon.jpg"
+site: bookdown::bookdown_site
+---
+
+# Introduction
+
+## Aim
+
+## Motivation
+
+
+# Getting Started with ...
+
+
+
+
+# References {.unnumbered}
+
+# Appendices {.unnumbered}
+
+## About Author {.unnumbered}
