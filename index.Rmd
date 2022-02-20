@@ -12,8 +12,123 @@ site: bookdown::bookdown_site
 
 ## Motivation
 
+- We have an understanding of BNs as graphical models representing probability distributions.
+- What does that imply in terms of the underlying probability distribution?
+- What happens if a probability distribution factorizes with respect to a graph?
+- What kind of computations can we make on BNs?
+- What kind of questions can we answer using (quantified) BNs?
+
 
 # Getting Started with ...
+
+## What is BN?
+
+A Probabilistic Network (aka causal graph, Bayesian belief network, etc.) is a graphical representation of a **joint probability distribution**.
+
+
+
+## Running Example: "Is the Family Out?"
+
+When Mr. West goes home at night, he wants to know if his family is home before trying the doors (maybe because the most convenient door to enter is double locked when nobody is home.) Often, when Mrs. West leaves the house, she turns on an outdoor light. However, she sometimes turns on this light if she is expecting a guest. Also (and of course!) the Wests have a dog. When nobody is home, the dog is put in the backyard. The same is true if the dog has bowel troubles. Finally, if the dog is in the backyard, Mr. West will probably hear her barking (or what he thinks is her barking), but sometimes he can be confused by other dogs barking.
+
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+fo.data <- readRDS(url("https://github.com/canaytore/bayesian-networks/raw/main/data/fo_data.rds")) #fo.data is imported
+head(fo.data)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(bnlearn)
+library(gRain)
+library(ggplot2)
+
+fo.dag <- model2network("[F][B][L|F][D|F:B][H|D]") #Family-out network is created
+graphviz.plot(fo.dag)
+```
+
+Each iteration results will be collected in following arrays.
+
+```{r}
+#First case: P(F=TRUE) 
+first.mle <- array(dim = 20)
+first.bayes <- array(dim = 20)
+
+#Second case: P(D=OUT | B=YES, F=TRUE)
+second.mle <- array(dim = 20)
+second.bayes <- array(dim = 20)
+```
+
+Now that we have a model ( fo.dag ) and data ( fo.data ) 
+We can learn the conditional probability tables (parameters) using the bn.fit function which implements the maximum likelihood maximization and a Bayesian method to learn parameters.
+
+```{r}
+for(i in 1:20){
+  #P(F=TRUE) using mle:
+  first.mle[i] <- bn.fit(fo.dag, fo.data[1:(500*i),])$F$prob["TRUE"]
+  #P(F=TRUE) using bayes:
+  first.bayes[i] <- bn.fit(fo.dag, fo.data[1:(500*i),], method = "bayes", iss=10)$F$prob["TRUE"]
+  
+  #P(D=OUT | B=YES, F=TRUE) using mle:
+  second.mle[i] <- bn.fit(fo.dag, fo.data[1:(500*i),])$D$prob["OUT","YES","TRUE"]
+  #P(D=OUT | B=YES, F=TRUE) using bayes:
+  second.bayes[i] <- bn.fit(fo.dag, fo.data[1:(500*i),], method = "bayes", iss=10)$D$prob["OUT","YES","TRUE"] 
+}
+```
+
+Plotting P(F=TRUE) using mle:
+
+```{r}
+first.mle #Each iteration results
+first.mle <- as.data.frame(first.mle)
+first.mle$ssize <- 1:20 # add iteration column
+ggplot(first.mle, aes(ssize, first.mle)) + geom_line() + geom_hline(yintercept = 0.1566, color="red", size=1) + xlab("iteration") + ylab("P(F=TRUE) using MLE") + ylim(range(0.15,0.2))
+```
+
+Plotting P(F=TRUE) using bayes:
+
+```{r}
+first.bayes #Each iteration results
+first.bayes <- as.data.frame(first.bayes)
+first.bayes$ssize <- 1:20 # add iteration column
+ggplot(first.bayes, aes(ssize, first.bayes)) + geom_line() + geom_hline(yintercept = 0.1569431, color="red", size=1) + xlab("iteration") + ylab("P(F=TRUE) using BAYES") + ylim(range(0.15,0.2))
+
+```
+
+
+Plotting P(F=TRUE) comparing both mle and bayes methods:
+
+```{r}
+plot(first.mle[,1], type="l", col="red", lwd = 2, xlab="iteration", ylab="P(F=TRUE)", ylim=range(0.15,0.20), main="Plotting both methods")
+lines(first.bayes[,1], type="l", col="green", lwd = 2)
+legend("topright", legend = c("MLE", "BAYES"), col = c("red","green"), bty='n', lty=1, lwd=2)
+```
+
+Plotting P(D=OUT | B=YES, F=TRUE) using mle:
+
+```{r}
+second.mle #Each iteration results
+second.mle <- as.data.frame(second.mle)
+second.mle$ssize <- 1:20 # add iteration column
+ggplot(second.mle, aes(ssize, second.mle)) + geom_line() + geom_hline(yintercept = 1, color="red", size=1) + xlab("iteration") + ylab("P(D=OUT | B=YES, F=TRUE) using MLE") + ylim(range(0,1))
+```
+
+Plotting P(D=OUT | B=YES, F=TRUE) using bayes:
+
+```{r}
+second.bayes #Each iteration results
+second.bayes <- as.data.frame(second.bayes)
+second.bayes$ssize <- 1:20 # add iteration column
+ggplot(second.bayes, aes(ssize, second.bayes)) + geom_line() + geom_hline(yintercept = 0.9324324, color="red", size=1) + xlab("iteration") + ylab("P(D=OUT | B=YES, F=TRUE) using BAYES") + ylim(range(0,1))
+```
+
+Plotting P(D=OUT | B=YES, F=TRUE) comparing both mle and bayes methods:
+
+```{r}
+plot(second.mle[,1], type="l", col="red", lwd = 2, xlab="iteration", ylab="P(D=OUT | B=YES, F=TRUE)", ylim=range(0.6,1), main="Plotting both methods")
+lines(second.bayes[,1], type="l", col="green", lwd = 2)
+legend("bottomright", legend = c("MLE", "BAYES"), col = c("red","green"), bty='n', lty=1, lwd=2)
+```
+
 
 
 

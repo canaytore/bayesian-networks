@@ -2,3 +2,5 @@ introduction
 aim
 motivation
 getting-started-with
+what-is-bn
+running-example-is-the-family-out
