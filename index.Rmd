@@ -130,6 +130,97 @@ legend("bottomright", legend = c("MLE", "BAYES"), col = c("red","green"), bty='n
 ```
 
 
+## HydeNet
+
+### Extended Oil-Wildcatter Problem:
+#Part 1.a) Define the extended network in HydeNet.
+
+#Our first task will be to represent and solve the extended oil-wildcatter influence diagram using HydeNet. We generate the network in HydeNet as follows;
+
+```{r}
+library(HydeNet)
+ow.net <- HydeNetwork(~ cost | test 
+                      + drill | test*seismic_results 
+                      + seismic_results | test*oil_content 
+                      + drill_reward | drill*oil_content 
+                      + recovery | drill*oil_content
+                      + recovery_level | drill*oil_content
+                      + recovery_reward | recovery*recovery_level)
+```
+
+For the chance node 'oil_content':
+
+```{r}
+oil_content_prob <- c(0.5,0.3,0.2) #Prior probability for dry, wet and soaking.
+ow.net <- setNode(ow.net, oil_content, nodeType="dcat", pi=vectorProbs(p=oil_content_prob, oil_content), factorLevels = c("dry","wet","soak"), validate = FALSE)
+```
+
+For the decision nodes 'test', 'drill' and 'recovery':
+
+```{r}
+dprob <- c(1,0) #Probability of decision nodes represent do and don't.
+ow.net <- setNode(ow.net, test, nodeType="dcat", pi=vectorProbs(p=dprob, test), factorLevels = c("test","dont_test"), validate = FALSE)
+ow.net <- setNode(ow.net, drill, nodeType="dcat", pi=vectorProbs(p=dprob, drill), factorLevels = c("drill","dont_drill"), validate = FALSE)
+ow.net <- setNode(ow.net, recovery, nodeType="dcat", pi=vectorProbs(p=dprob, recovery), factorLevels = c("recovery","dont_recovery"), validate = FALSE)
+```
+
+For the chance node 'seismic_results':
+
+```{r}
+cpt_seismic_results <- readRDS(url("https://github.com/canaytore/bayesian-networks/raw/main/data/cpt_seismic_results.rds"))
+#The file ?cpt_seismic_results.rds? was created using the inputCPT() function of HydeNet. It stands for the conditional probability table of the seismic results based on parent nodes which are 'test' and 'oil_content'.
+cpt_seismic_results
+ow.net <- setNodeModels(ow.net, cpt_seismic_results)
+```
+
+For the chance node 'recovery_level':
+
+```{r}
+cpt_recovery_level <- readRDS(url("https://github.com/canaytore/bayesian-networks/raw/main/data/cpt_recovery_level.rds"))
+#The file ?cpt_recovery_level.rds? was created using the inputCPT() function of HydeNet. It stands for the conditional probability table of the recovery levels based on parent nodes which are 'drill' and 'oil_content'.
+#The trick here is that 'recovery_level' should exactly be nr (no recovery) when the drill is not done since it is not sensible to be able to do 'recovery' without the 'drill'.
+cpt_recovery_level
+ow.net <- setNodeModels(ow.net, cpt_recovery_level)
+```
+
+For the utility node 'cost':
+
+```{r}
+ow.net <- setNode(ow.net, cost, "determ", define=fromFormula(),
+                  nodeFormula = cost ~ ifelse(test == "test", -10, 0))
+```
+
+For the utility node 'drill_reward':
+
+```{r}
+ow.net <- setNode(ow.net, drill_reward, "determ", define=fromFormula(),
+                  nodeFormula = drill_reward ~ ifelse(oil_content == "dry",
+                                                      ifelse(drill == "drill", -70, 0),
+                                                      ifelse(oil_content == "wet",
+                                                             ifelse(drill == "drill", 50, 0),
+                                                             ifelse(drill == "drill", 200, 0))))
+```
+
+For the utility node 'recovery_reward':
+
+```{r}
+ow.net <- setNode(ow.net, recovery_reward, "determ", define=fromFormula(),
+                  nodeFormula = recovery_reward ~ ifelse(recovery_level == "nr",
+                                                         ifelse(recovery == "recovery", -20, 0),
+                                                         ifelse(recovery_level == "lr",
+                                                                ifelse(recovery == "recovery", 10, 0),
+                                                                ifelse(recovery == "recovery", 30, 0))))
+
+ow.net <- setDecisionNodes(ow.net, test, drill, recovery) #Setting the decision nodes
+ow.net <- setUtilityNodes(ow.net, cost, drill_reward, recovery_reward) #Setting the utility nodes
+plot(ow.net) #Plotting the influence diagram of extended version of oil-wildcatter problem
+```
+
+The trick is here that we will have precise information about 'oil_content' after the decision 'drill'.
+Besides, there must be an arc from ?drill? to ?recovery_level? since 'recovery_level' should exactly be nr (no recovery) when the drill is not done since it is not sensible to be able to do secondary 'recovery' without the primary 'drill'. 
+
+
+
 
 
 
