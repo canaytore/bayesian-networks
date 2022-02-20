@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Influence Diagrams | Decision Analysis - Bayesian Networks</title>
+  <meta name="description" content="Chapter 3 Influence Diagrams | Decision Analysis - Bayesian Networks" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Influence Diagrams | Decision Analysis - Bayesian Networks" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Influence Diagrams | Decision Analysis - Bayesian Networks" />
+  
+  
+  
+
+<meta name="author" content="Author: Can Aytöre" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon" />
+<link rel="prev" href="getting-started-with.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.8/grViz.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BAYESIAN NETWORKS</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#aim"><i class="fa fa-check"></i><b>1.1</b> Aim</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i><b>1.2</b> Motivation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started-with.html"><a href="getting-started-with.html"><i class="fa fa-check"></i><b>2</b> Getting Started with …</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="getting-started-with.html"><a href="getting-started-with.html#what-is-bn"><i class="fa fa-check"></i><b>2.1</b> What is BN?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started-with.html"><a href="getting-started-with.html#running-example-is-the-family-out"><i class="fa fa-check"></i><b>2.2</b> Running Example: “Is the Family Out?”</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="influence-diagrams.html"><a href="influence-diagrams.html"><i class="fa fa-check"></i><b>3</b> Influence Diagrams</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#umbrella-problem"><i class="fa fa-check"></i><b>3.1</b> Umbrella Problem</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#finding-the-optimal-policy"><i class="fa fa-check"></i><b>3.1.1</b> Finding the optimal policy</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="influence-diagrams.html"><a href="influence-diagrams.html#incorporating-weather-forecast"><i class="fa fa-check"></i><b>3.2</b> Incorporating Weather Forecast</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#finding-the-optimal-policy-1"><i class="fa fa-check"></i><b>3.2.1</b> Finding the optimal policy</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="influence-diagrams.html"><a href="influence-diagrams.html#oil-wildcatter-problem"><i class="fa fa-check"></i><b>3.3</b> Oil-Wildcatter Problem:</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#defining-the-extended-network-in-hydenet"><i class="fa fa-check"></i><b>3.3.1</b> Defining the extended network in HydeNet</a></li>
+<li class="chapter" data-level="3.3.2" data-path="influence-diagrams.html"><a href="influence-diagrams.html#finding-the-optimal-policy-2"><i class="fa fa-check"></i><b>3.3.2</b> Finding the optimal policy</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="influence-diagrams.html"><a href="influence-diagrams.html#extended-oil-wildcatter-problem"><i class="fa fa-check"></i><b>3.4</b> Extended Oil-Wildcatter Problem:</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#defining-the-extended-network-in-hydenet-1"><i class="fa fa-check"></i><b>3.4.1</b> Defining the extended network in HydeNet</a></li>
+<li class="chapter" data-level="3.4.2" data-path="influence-diagrams.html"><a href="influence-diagrams.html#finding-the-optimal-policy-3"><i class="fa fa-check"></i><b>3.4.2</b> Finding the optimal policy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html#about-author"><i class="fa fa-check"></i>About Author</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://canaytore.github.io/" target="blank">Copyright &copy; Can Aytöre</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Decision Analysis - Bayesian Networks</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="influence-diagrams" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Influence Diagrams</h1>
+<p>An influence diagram is:
+- a directed acyclic graph G containing decision and chance nodes, and information and relevance arcs representing what is known at the time of a decision and probabilistic dependency, respectively.
+- a set of probability distributions associated with each chance node,
+- optionally a utility node and a corresponding set of utilities</p>
+<div id="umbrella-problem" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Umbrella Problem</h2>
+<p>Consider the case when you are getting out of your apartment and you want to decide whether to take an umbrella with you or not. Your decision is certainly dependent on the weather, a phenomenon you cannot control. For simplicity, assume the weather can get one of the two states: sunshine or rain. You have likes and dislikes about taking your umbrella with you (you care!) depending on the weather. If it turns out to be a sunny day and you have taken your umbrella with you, you don’t like it. However, you would hate it more if it rains and you do not have your umbrella. You are happier if it is sunny and you have left your umbrella at home (do not need to carry it around). You are happiest if it rains and you have your umbrella with you.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="influence-diagrams.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HydeNet)</span>
+<span id="cb20-2"><a href="influence-diagrams.html#cb20-2" aria-hidden="true" tabindex="-1"></a>umbrella.net <span class="ot">&lt;-</span> <span class="fu">HydeNetwork</span>(<span class="sc">~</span> payoff <span class="sc">|</span> action<span class="sc">*</span>weather)</span></code></pre></div>
+<p>For the chance node ‘weather’:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="influence-diagrams.html#cb21-1" aria-hidden="true" tabindex="-1"></a>weather_prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.7</span>) <span class="co">#Prior probability for rain and sunshine, respectively.</span></span>
+<span id="cb21-2"><a href="influence-diagrams.html#cb21-2" aria-hidden="true" tabindex="-1"></a>umbrella.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(umbrella.net, weather, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>weather_prob, weather), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;rain&quot;</span>,<span class="st">&quot;sunshine&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>For the decision nodes ‘action’:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="influence-diagrams.html#cb22-1" aria-hidden="true" tabindex="-1"></a>dprob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>) <span class="co">#Probability of decision nodes represent do and don&#39;t.</span></span>
+<span id="cb22-2"><a href="influence-diagrams.html#cb22-2" aria-hidden="true" tabindex="-1"></a>umbrella.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(umbrella.net, action, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>dprob, action), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;take&quot;</span>,<span class="st">&quot;leave&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>For the utility node ‘payoff’:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="influence-diagrams.html#cb23-1" aria-hidden="true" tabindex="-1"></a>umbrella.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(umbrella.net, payoff, <span class="st">&quot;determ&quot;</span>, <span class="at">define=</span><span class="fu">fromFormula</span>(),</span>
+<span id="cb23-2"><a href="influence-diagrams.html#cb23-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nodeFormula =</span> payoff <span class="sc">~</span> <span class="fu">ifelse</span>(weather <span class="sc">==</span> <span class="st">&quot;rain&quot;</span>,</span>
+<span id="cb23-3"><a href="influence-diagrams.html#cb23-3" aria-hidden="true" tabindex="-1"></a>                                                      <span class="fu">ifelse</span>(action <span class="sc">==</span> <span class="st">&quot;take&quot;</span>, <span class="dv">100</span>, <span class="dv">0</span>),</span>
+<span id="cb23-4"><a href="influence-diagrams.html#cb23-4" aria-hidden="true" tabindex="-1"></a>                                                             <span class="fu">ifelse</span>(action <span class="sc">==</span> <span class="st">&quot;take&quot;</span>, <span class="dv">30</span>, <span class="dv">70</span>)))</span>
+<span id="cb23-5"><a href="influence-diagrams.html#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="influence-diagrams.html#cb23-6" aria-hidden="true" tabindex="-1"></a>umbrella.net <span class="ot">&lt;-</span> <span class="fu">setDecisionNodes</span>(umbrella.net, action) <span class="co">#Setting the decision nodes</span></span>
+<span id="cb23-7"><a href="influence-diagrams.html#cb23-7" aria-hidden="true" tabindex="-1"></a>umbrella.net <span class="ot">&lt;-</span> <span class="fu">setUtilityNodes</span>(umbrella.net, payoff) <span class="co">#Setting the utility nodes</span></span>
+<span id="cb23-8"><a href="influence-diagrams.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(umbrella.net) <span class="co">#Plotting the influence diagram of extended version of oil-wildcatter problem</span></span></code></pre></div>
+<div id="htmlwidget-ce73908c51113564032f" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ce73908c51113564032f">{"x":{"diagram":"digraph {\n\n\n\n\n  \"1\" [label = \"payoff\", shape = \"diamond\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFB2\"] \n  \"2\" [label = \"action\", shape = \"rect\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#6BAED6\"] \n  \"3\" [label = \"weather\", shape = \"ellipse\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFFF\"] \n  \"2\"->\"1\" \n  \"3\"->\"1\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="finding-the-optimal-policy" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Finding the optimal policy</h3>
+<p>Let us pass this structure to the Gibbs sampler (JAGS) and track the variables of interest (these nodes are useful to compute the conditional expectations if necessary).
+Please note that the <code>rjags</code> package is just an interface to the JAGS library. Make sure you have installed JAGS-4.exe (can be downloaded from <a href="http://www.sourceforge.net/projects/mcmc-jags/files">here</a>)
+We are trying to compute the expected utility of the policy: (‘action’).
+<code>HydeNet</code> provides a policyMatrix() function to enumerate all policies of a given decision network. This decision network is solved using Gibbs sampling with 10^6 samples. We could use them as follows:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="influence-diagrams.html#cb24-1" aria-hidden="true" tabindex="-1"></a>policy_umbrella <span class="ot">&lt;-</span> <span class="fu">policyMatrix</span>(umbrella.net)</span>
+<span id="cb24-2"><a href="influence-diagrams.html#cb24-2" aria-hidden="true" tabindex="-1"></a>compiledNet_umbrella <span class="ot">&lt;-</span> <span class="fu">compileDecisionModel</span>(umbrella.net, <span class="at">policyMatrix =</span> policy_umbrella)</span></code></pre></div>
+<pre><code>## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 0
+##    Unobserved stochastic nodes: 2
+##    Total graph size: 16
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 1
+##    Unobserved stochastic nodes: 1
+##    Total graph size: 16
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 1
+##    Unobserved stochastic nodes: 1
+##    Total graph size: 16
+## 
+## Initializing model</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="influence-diagrams.html#cb26-1" aria-hidden="true" tabindex="-1"></a>trackedVars_umbrella <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;weather&quot;</span>,<span class="st">&quot;action&quot;</span>,<span class="st">&quot;payoff&quot;</span>)</span>
+<span id="cb26-2"><a href="influence-diagrams.html#cb26-2" aria-hidden="true" tabindex="-1"></a>samples_umbrella <span class="ot">&lt;-</span> <span class="fu">lapply</span>(compiledNet_umbrella,</span>
+<span id="cb26-3"><a href="influence-diagrams.html#cb26-3" aria-hidden="true" tabindex="-1"></a>                     HydeSim,</span>
+<span id="cb26-4"><a href="influence-diagrams.html#cb26-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">variable.names =</span> trackedVars_umbrella,</span>
+<span id="cb26-5"><a href="influence-diagrams.html#cb26-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">n.iter =</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">5</span>)</span></code></pre></div>
+<p>Let us compute a single utility on samples:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="influence-diagrams.html#cb27-1" aria-hidden="true" tabindex="-1"></a>samples_umbrella <span class="ot">&lt;-</span> <span class="fu">lapply</span>(samples_umbrella, <span class="cf">function</span>(x) </span>
+<span id="cb27-2"><a href="influence-diagrams.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(x, <span class="at">utility =</span> x<span class="sc">$</span>payoff))</span></code></pre></div>
+<p>Now we can view all expectations at once by combining policies and the computed expectations:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="influence-diagrams.html#cb28-1" aria-hidden="true" tabindex="-1"></a>results_umbrella <span class="ot">&lt;-</span> <span class="fu">lapply</span>(samples_umbrella, <span class="cf">function</span>(l) <span class="fu">mean</span>(l<span class="sc">$</span>utility))</span>
+<span id="cb28-2"><a href="influence-diagrams.html#cb28-2" aria-hidden="true" tabindex="-1"></a>results_umbrella <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">unlist</span>(results_umbrella))</span>
+<span id="cb28-3"><a href="influence-diagrams.html#cb28-3" aria-hidden="true" tabindex="-1"></a>results_umbrella <span class="ot">&lt;-</span> <span class="fu">cbind</span>(policy_umbrella, results_umbrella)</span>
+<span id="cb28-4"><a href="influence-diagrams.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(results_umbrella)[<span class="fu">ncol</span>(policy_umbrella)<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;utility&quot;</span></span></code></pre></div>
+<p>The results according policies are given below:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="influence-diagrams.html#cb29-1" aria-hidden="true" tabindex="-1"></a>results_umbrella[]</span></code></pre></div>
+<pre><code>##   action utility
+## 1      1 50.8901
+## 2      2 48.9636</code></pre>
+<p>According to the policies, all utility values seem feasible and we don’t have any conceptual error in the model.
+The optimal policy seems to be:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="influence-diagrams.html#cb31-1" aria-hidden="true" tabindex="-1"></a>results_umbrella[results_umbrella<span class="sc">$</span>utility <span class="sc">==</span> <span class="fu">max</span>(results_umbrella<span class="sc">$</span>utility),] </span></code></pre></div>
+<pre><code>##   action utility
+## 1      1 50.8901</code></pre>
+<p>..the first policy which means DO the ‘action’, or TAKE the UMBRELLA which results in an expected reward of app. 51.2%.</p>
+<p>As extra information to be obtained from the output (to double check the validity of this model in this case),</p>
+<p>Among the cases where it is decided not to ?drill? (3,4,7 and 8), it is sensible that the decision of not doing ?test? and not doing ?recovery? must be taken. It is clearly seen from result table.
+So when you do drill, you simply do not ?test?. The utility results can be seen from the following table:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="influence-diagrams.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_umbrella, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>weather<span class="sc">==</span><span class="st">&quot;rain&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 100
+## 
+## [[2]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="influence-diagrams.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_umbrella, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>weather<span class="sc">==</span><span class="st">&quot;sunshine&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 30
+## 
+## [[2]]
+## [1] 70</code></pre>
+<div id="evaluating-influence-diagrams-augmented-variable-elimination" class="section level4" number="3.1.1.1">
+<h4><span class="header-section-number">3.1.1.1</span> Evaluating Influence Diagrams: Augmented Variable Elimination</h4>
+<ul>
+<li><em>Barren node removal</em>: A barren node may be simply removed from an oriented, regular influence diagram. If it is a decision node, then any alternative would be optimal.</li>
+<li><em>Chance node removal</em>: Given that chance node X directly precedes the value node and nothing else in an oriented, regular ID, node X can be removed by conditional expectation. Afterward, the value node inherits all of the conditional predecessors from node X, and thus the process creates no new barren nodes.</li>
+<li><em>Decision node removal</em>: Given that all barren nodes have been removed, that decision node A is a conditional predecessor of the value node, and that all other conditional predecessors of the value node are informational predecessors of node A in an oriented, regular ID, node A may be removed by maximizing expected utility, conditioned on the values of its informational predecessors. The maximizing alternative(s) should be recorded as the optimal policy.</li>
+<li><em>Arc reversal</em>: (between chance nodes). As we have seen before.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="incorporating-weather-forecast" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Incorporating Weather Forecast</h2>
+<p>Consider the umbrella problem. Assume that you now decided to make a more <strong>informed</strong> decision. You listen to a weather forecast for that day. The new situation is depicted as:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="influence-diagrams.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HydeNet)</span>
+<span id="cb37-2"><a href="influence-diagrams.html#cb37-2" aria-hidden="true" tabindex="-1"></a>umbrella2.net <span class="ot">&lt;-</span> <span class="fu">HydeNetwork</span>(<span class="sc">~</span> payoff <span class="sc">|</span> action<span class="sc">*</span>weather</span>
+<span id="cb37-3"><a href="influence-diagrams.html#cb37-3" aria-hidden="true" tabindex="-1"></a>                             <span class="sc">+</span> action <span class="sc">|</span> weather_forecast</span>
+<span id="cb37-4"><a href="influence-diagrams.html#cb37-4" aria-hidden="true" tabindex="-1"></a>                             <span class="sc">+</span> weather_forecast <span class="sc">|</span> weather)</span></code></pre></div>
+<p>For the chance node ‘weather’:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="influence-diagrams.html#cb38-1" aria-hidden="true" tabindex="-1"></a>weather_prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">0.7</span>) <span class="co">#Prior probability for rain and sunshine, respectively.</span></span>
+<span id="cb38-2"><a href="influence-diagrams.html#cb38-2" aria-hidden="true" tabindex="-1"></a>umbrella2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(umbrella2.net, weather, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>weather_prob, weather), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;rain&quot;</span>,<span class="st">&quot;sunshine&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>For the chance node ‘weather_forecast’:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="influence-diagrams.html#cb39-1" aria-hidden="true" tabindex="-1"></a>cpt_weather_forecast <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/canaytore/bayesian-networks/raw/main/data/cpt_weather_forecast.rds&quot;</span>))</span>
+<span id="cb39-2"><a href="influence-diagrams.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#The file ?cpt_weather_forecast.rds? was created using the inputCPT() function of HydeNet. It stands for the conditional probability table of the seismic results based on parent nodes which are &#39;test&#39; and &#39;oil_content&#39;.</span></span>
+<span id="cb39-3"><a href="influence-diagrams.html#cb39-3" aria-hidden="true" tabindex="-1"></a>cpt_weather_forecast</span></code></pre></div>
+<pre><code>##           weather_forecast
+## weather    sunny cloudy rainy
+##   rain      0.15   0.25   0.6
+##   sunshine  0.70   0.20   0.1</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="influence-diagrams.html#cb41-1" aria-hidden="true" tabindex="-1"></a>umbrella2.net <span class="ot">&lt;-</span> <span class="fu">setNodeModels</span>(umbrella2.net, cpt_weather_forecast)</span></code></pre></div>
+<p>For the decision nodes ‘action’:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="influence-diagrams.html#cb42-1" aria-hidden="true" tabindex="-1"></a>dprob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>) <span class="co">#Probability of decision nodes represent do and don&#39;t.</span></span>
+<span id="cb42-2"><a href="influence-diagrams.html#cb42-2" aria-hidden="true" tabindex="-1"></a>umbrella2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(umbrella2.net, action, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>dprob, action), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;take&quot;</span>,<span class="st">&quot;leave&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>For the utility node ‘payoff’:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="influence-diagrams.html#cb43-1" aria-hidden="true" tabindex="-1"></a>umbrella2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(umbrella2.net, payoff, <span class="st">&quot;determ&quot;</span>, <span class="at">define=</span><span class="fu">fromFormula</span>(),</span>
+<span id="cb43-2"><a href="influence-diagrams.html#cb43-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nodeFormula =</span> payoff <span class="sc">~</span> <span class="fu">ifelse</span>(weather <span class="sc">==</span> <span class="st">&quot;rain&quot;</span>,</span>
+<span id="cb43-3"><a href="influence-diagrams.html#cb43-3" aria-hidden="true" tabindex="-1"></a>                                                      <span class="fu">ifelse</span>(action <span class="sc">==</span> <span class="st">&quot;take&quot;</span>, <span class="dv">100</span>, <span class="dv">0</span>),</span>
+<span id="cb43-4"><a href="influence-diagrams.html#cb43-4" aria-hidden="true" tabindex="-1"></a>                                                             <span class="fu">ifelse</span>(action <span class="sc">==</span> <span class="st">&quot;take&quot;</span>, <span class="dv">30</span>, <span class="dv">70</span>)))</span>
+<span id="cb43-5"><a href="influence-diagrams.html#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="influence-diagrams.html#cb43-6" aria-hidden="true" tabindex="-1"></a>umbrella2.net <span class="ot">&lt;-</span> <span class="fu">setDecisionNodes</span>(umbrella2.net, action) <span class="co">#Setting the decision nodes</span></span>
+<span id="cb43-7"><a href="influence-diagrams.html#cb43-7" aria-hidden="true" tabindex="-1"></a>umbrella2.net <span class="ot">&lt;-</span> <span class="fu">setUtilityNodes</span>(umbrella2.net, payoff) <span class="co">#Setting the utility nodes</span></span>
+<span id="cb43-8"><a href="influence-diagrams.html#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(umbrella2.net) <span class="co">#Plotting the influence diagram of extended version of oil-wildcatter problem</span></span></code></pre></div>
+<div id="htmlwidget-c12a252b58f9a086d171" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c12a252b58f9a086d171">{"x":{"diagram":"digraph {\n\n\n\n\n  \"1\" [label = \"payoff\", shape = \"diamond\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFB2\"] \n  \"2\" [label = \"action\", shape = \"rect\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#6BAED6\"] \n  \"3\" [label = \"weather\", shape = \"ellipse\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFFF\"] \n  \"4\" [label = \"weather_forecast\", shape = \"ellipse\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFFF\"] \n  \"2\"->\"1\" \n  \"3\"->\"1\" \n  \"4\"->\"2\" \n  \"3\"->\"4\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="finding-the-optimal-policy-1" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Finding the optimal policy</h3>
+<p>Let us pass this structure to the Gibbs sampler (JAGS) and track the variables of interest (these nodes are useful to compute the conditional expectations if necessary).
+Please note that the <code>rjags</code> package is just an interface to the JAGS library. Make sure you have installed JAGS-4.exe (can be downloaded from <a href="http://www.sourceforge.net/projects/mcmc-jags/files">here</a>)
+We are trying to compute the expected utility of the policy: (‘action’).
+<code>HydeNet</code> provides a policyMatrix() function to enumerate all policies of a given decision network. This decision network is solved using Gibbs sampling with 10^6 samples. We could use them as follows:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="influence-diagrams.html#cb44-1" aria-hidden="true" tabindex="-1"></a>policy_umbrella2 <span class="ot">&lt;-</span> <span class="fu">policyMatrix</span>(umbrella2.net)</span>
+<span id="cb44-2"><a href="influence-diagrams.html#cb44-2" aria-hidden="true" tabindex="-1"></a>compiledNet_umbrella2 <span class="ot">&lt;-</span> <span class="fu">compileDecisionModel</span>(umbrella2.net, <span class="at">policyMatrix =</span> policy_umbrella2)</span></code></pre></div>
+<pre><code>## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 0
+##    Unobserved stochastic nodes: 3
+##    Total graph size: 26
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 1
+##    Unobserved stochastic nodes: 2
+##    Total graph size: 26
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 1
+##    Unobserved stochastic nodes: 2
+##    Total graph size: 26
+## 
+## Initializing model</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="influence-diagrams.html#cb46-1" aria-hidden="true" tabindex="-1"></a>trackedVars_umbrella2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;weather&quot;</span>,<span class="st">&quot;weather_forecast&quot;</span>,<span class="st">&quot;action&quot;</span>,<span class="st">&quot;payoff&quot;</span>)</span>
+<span id="cb46-2"><a href="influence-diagrams.html#cb46-2" aria-hidden="true" tabindex="-1"></a>samples_umbrella2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(compiledNet_umbrella2,</span>
+<span id="cb46-3"><a href="influence-diagrams.html#cb46-3" aria-hidden="true" tabindex="-1"></a>                     HydeSim,</span>
+<span id="cb46-4"><a href="influence-diagrams.html#cb46-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">variable.names =</span> trackedVars_umbrella2,</span>
+<span id="cb46-5"><a href="influence-diagrams.html#cb46-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">n.iter =</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">5</span>)</span></code></pre></div>
+<p>Let us compute a single utility on samples:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="influence-diagrams.html#cb47-1" aria-hidden="true" tabindex="-1"></a>samples_umbrella2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(samples_umbrella2, <span class="cf">function</span>(x) </span>
+<span id="cb47-2"><a href="influence-diagrams.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(x, <span class="at">utility =</span> x<span class="sc">$</span>payoff))</span></code></pre></div>
+<p>Now we can view all expectations at once by combining policies and the computed expectations:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="influence-diagrams.html#cb48-1" aria-hidden="true" tabindex="-1"></a>results_umbrella2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(samples_umbrella2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l<span class="sc">$</span>utility))</span>
+<span id="cb48-2"><a href="influence-diagrams.html#cb48-2" aria-hidden="true" tabindex="-1"></a>results_umbrella2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">unlist</span>(results_umbrella2))</span>
+<span id="cb48-3"><a href="influence-diagrams.html#cb48-3" aria-hidden="true" tabindex="-1"></a>results_umbrella2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(policy_umbrella2, results_umbrella2)</span>
+<span id="cb48-4"><a href="influence-diagrams.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(results_umbrella2)[<span class="fu">ncol</span>(policy_umbrella2)<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;utility&quot;</span></span></code></pre></div>
+<p>The results according policies are given below:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="influence-diagrams.html#cb49-1" aria-hidden="true" tabindex="-1"></a>results_umbrella2[]</span></code></pre></div>
+<pre><code>##   action utility
+## 1      1 51.0322
+## 2      2 48.8992</code></pre>
+<p>According to the policies, all utility values seem feasible and we don’t have any conceptual error in the model.
+The optimal policy seems to be:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="influence-diagrams.html#cb51-1" aria-hidden="true" tabindex="-1"></a>results_umbrella2[results_umbrella2<span class="sc">$</span>utility <span class="sc">==</span> <span class="fu">max</span>(results_umbrella2<span class="sc">$</span>utility),] </span></code></pre></div>
+<pre><code>##   action utility
+## 1      1 51.0322</code></pre>
+<p>..the first policy which means DO the ‘action’, or TAKE the UMBRELLA which results in an expected reward of app. 51.2%.</p>
+<p>As extra information to be obtained from the output (also to double check the validity of this model in this case),</p>
+<p>Among the cases where it is decided not to ?drill? (3,4,7 and 8), it is sensible that the decision of not doing ?test? and not doing ?recovery? must be taken. It is clearly seen from result table.
+So when you do drill, you simply do not ?test?. The utility results can be seen from the following table:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="influence-diagrams.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_umbrella2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>weather_forecast<span class="sc">==</span><span class="st">&quot;sunny&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 35.88221
+## 
+## [[2]]
+## [1] 64.02782</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="influence-diagrams.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_umbrella2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>weather_forecast<span class="sc">==</span><span class="st">&quot;rainy&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 80.68624
+## 
+## [[2]]
+## [1] 19.45113</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="influence-diagrams.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_umbrella2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>weather_forecast<span class="sc">==</span><span class="st">&quot;cloudy&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 54.61879
+## 
+## [[2]]
+## [1] 45.52832</code></pre>
+</div>
+</div>
+<div id="oil-wildcatter-problem" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Oil-Wildcatter Problem:</h2>
+<p>An oil wildcatter must decide whether to drill or not to drill. The cost of drilling is $70,000. If he decides to drill, the well may be soaking (with a return of $270,000), wet (with a return of $120,000), or dry (with a return of $0). These returns are exclusive of the drilling cost. The prior probabilities for soaking (lots of oil), wet (some oil), and dry (no oil) are (0.2, 0.3, 0.5). At the cost of $10,000, the oil wildcatter could decide to take seismic soundings of the geological structure at the site to classify the structure as having either no structure ns, open structure, os and closed structure cs. The specifics of the test are given as follows:</p>
+<div class="figure">
+<img src="data/cpt_test_soaking.JPG" alt="" />
+<p class="caption">cpt_test</p>
+</div>
+<div id="defining-the-extended-network-in-hydenet" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Defining the extended network in HydeNet</h3>
+<p>Our first task will be to represent and solve the extended oil-wildcatter influence diagram using <code>HydeNet</code>. We generate the network in <code>HydeNet</code> as follows;</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="influence-diagrams.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HydeNet)</span>
+<span id="cb59-2"><a href="influence-diagrams.html#cb59-2" aria-hidden="true" tabindex="-1"></a>ow.net <span class="ot">&lt;-</span> <span class="fu">HydeNetwork</span>(<span class="sc">~</span> cost <span class="sc">|</span> test </span>
+<span id="cb59-3"><a href="influence-diagrams.html#cb59-3" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">+</span> drill <span class="sc">|</span> test<span class="sc">*</span>seismic_results </span>
+<span id="cb59-4"><a href="influence-diagrams.html#cb59-4" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">+</span> seismic_results <span class="sc">|</span> test<span class="sc">*</span>oil_content </span>
+<span id="cb59-5"><a href="influence-diagrams.html#cb59-5" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">+</span> reward <span class="sc">|</span> drill<span class="sc">*</span>oil_content)</span></code></pre></div>
+<p>For the chance node ‘oil_content’:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="influence-diagrams.html#cb60-1" aria-hidden="true" tabindex="-1"></a>oil_content_prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>) <span class="co">#Prior probability for dry, wet and soaking, respectively.</span></span>
+<span id="cb60-2"><a href="influence-diagrams.html#cb60-2" aria-hidden="true" tabindex="-1"></a>ow.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow.net, oil_content, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>oil_content_prob, oil_content), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;dry&quot;</span>,<span class="st">&quot;wet&quot;</span>,<span class="st">&quot;soak&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>For the decision nodes ‘test’ and ‘drill’:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="influence-diagrams.html#cb61-1" aria-hidden="true" tabindex="-1"></a>dprob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>) <span class="co">#Probability of decision nodes represent do and don&#39;t.</span></span>
+<span id="cb61-2"><a href="influence-diagrams.html#cb61-2" aria-hidden="true" tabindex="-1"></a>ow.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow.net, test, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>dprob, test), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;test&quot;</span>,<span class="st">&quot;dont_test&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb61-3"><a href="influence-diagrams.html#cb61-3" aria-hidden="true" tabindex="-1"></a>ow.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow.net, drill, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>dprob, drill), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;drill&quot;</span>,<span class="st">&quot;dont_drill&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>For the chance node ‘seismic_results’:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="influence-diagrams.html#cb62-1" aria-hidden="true" tabindex="-1"></a>cpt_seismic_results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/canaytore/bayesian-networks/raw/main/data/cpt_seismic_results.rds&quot;</span>))</span>
+<span id="cb62-2"><a href="influence-diagrams.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co">#The file ?cpt_seismic_results.rds? was created using the inputCPT() function of HydeNet. It stands for the conditional probability table of the seismic results based on parent nodes which are &#39;test&#39; and &#39;oil_content&#39;.</span></span>
+<span id="cb62-3"><a href="influence-diagrams.html#cb62-3" aria-hidden="true" tabindex="-1"></a>cpt_seismic_results</span></code></pre></div>
+<pre><code>## , , seismic_results = ns
+## 
+##            oil_content
+## test         dry  wet soak
+##   test      0.60 0.20 0.20
+##   dont_test 0.33 0.33 0.33
+## 
+## , , seismic_results = os
+## 
+##            oil_content
+## test         dry  wet soak
+##   test      0.30 0.40 0.30
+##   dont_test 0.33 0.33 0.33
+## 
+## , , seismic_results = cs
+## 
+##            oil_content
+## test         dry  wet soak
+##   test      0.10 0.40 0.50
+##   dont_test 0.34 0.34 0.34</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="influence-diagrams.html#cb64-1" aria-hidden="true" tabindex="-1"></a>ow.net <span class="ot">&lt;-</span> <span class="fu">setNodeModels</span>(ow.net, cpt_seismic_results)</span></code></pre></div>
+<p>For the utility node ‘cost’:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="influence-diagrams.html#cb65-1" aria-hidden="true" tabindex="-1"></a>ow.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow.net, cost, <span class="st">&quot;determ&quot;</span>, <span class="at">define=</span><span class="fu">fromFormula</span>(),</span>
+<span id="cb65-2"><a href="influence-diagrams.html#cb65-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nodeFormula =</span> cost <span class="sc">~</span> <span class="fu">ifelse</span>(test <span class="sc">==</span> <span class="st">&quot;test&quot;</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p>For the utility node ‘reward’:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="influence-diagrams.html#cb66-1" aria-hidden="true" tabindex="-1"></a>ow.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow.net, reward, <span class="st">&quot;determ&quot;</span>, <span class="at">define=</span><span class="fu">fromFormula</span>(),</span>
+<span id="cb66-2"><a href="influence-diagrams.html#cb66-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nodeFormula =</span> reward <span class="sc">~</span> <span class="fu">ifelse</span>(oil_content <span class="sc">==</span> <span class="st">&quot;dry&quot;</span>,</span>
+<span id="cb66-3"><a href="influence-diagrams.html#cb66-3" aria-hidden="true" tabindex="-1"></a>                                                      <span class="fu">ifelse</span>(drill <span class="sc">==</span> <span class="st">&quot;drill&quot;</span>, <span class="sc">-</span><span class="dv">70</span>, <span class="dv">0</span>),</span>
+<span id="cb66-4"><a href="influence-diagrams.html#cb66-4" aria-hidden="true" tabindex="-1"></a>                                                      <span class="fu">ifelse</span>(oil_content <span class="sc">==</span> <span class="st">&quot;wet&quot;</span>,</span>
+<span id="cb66-5"><a href="influence-diagrams.html#cb66-5" aria-hidden="true" tabindex="-1"></a>                                                             <span class="fu">ifelse</span>(drill <span class="sc">==</span> <span class="st">&quot;drill&quot;</span>, <span class="dv">50</span>, <span class="dv">0</span>),</span>
+<span id="cb66-6"><a href="influence-diagrams.html#cb66-6" aria-hidden="true" tabindex="-1"></a>                                                             <span class="fu">ifelse</span>(drill <span class="sc">==</span> <span class="st">&quot;drill&quot;</span>, <span class="dv">200</span>, <span class="dv">0</span>))))</span>
+<span id="cb66-7"><a href="influence-diagrams.html#cb66-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-8"><a href="influence-diagrams.html#cb66-8" aria-hidden="true" tabindex="-1"></a>ow.net <span class="ot">&lt;-</span> <span class="fu">setDecisionNodes</span>(ow.net, test, drill) <span class="co">#Setting the decision nodes</span></span>
+<span id="cb66-9"><a href="influence-diagrams.html#cb66-9" aria-hidden="true" tabindex="-1"></a>ow.net <span class="ot">&lt;-</span> <span class="fu">setUtilityNodes</span>(ow.net, cost, reward) <span class="co">#Setting the utility nodes</span></span>
+<span id="cb66-10"><a href="influence-diagrams.html#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ow.net) <span class="co">#Plotting the influence diagram of extended version of oil-wildcatter problem</span></span></code></pre></div>
+<div id="htmlwidget-931e44e05c7749e128b7" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-931e44e05c7749e128b7">{"x":{"diagram":"digraph {\n\n\n\n\n  \"1\" [label = \"cost\", shape = \"diamond\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFB2\"] \n  \"2\" [label = \"test\", shape = \"rect\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#6BAED6\"] \n  \"3\" [label = \"drill\", shape = \"rect\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#6BAED6\"] \n  \"4\" [label = \"seismic_results\", shape = \"ellipse\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFFF\"] \n  \"5\" [label = \"oil_content\", shape = \"ellipse\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFFF\"] \n  \"6\" [label = \"reward\", shape = \"diamond\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFB2\"] \n  \"2\"->\"1\" \n  \"2\"->\"3\" \n  \"4\"->\"3\" \n  \"2\"->\"4\" \n  \"5\"->\"4\" \n  \"3\"->\"6\" \n  \"5\"->\"6\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>The trick is here that we will have precise information about ‘oil_content’ after the decision ‘drill’.
+Besides, there must be an arc from ?drill? to ?recovery_level? since ‘recovery_level’ should exactly be nr (no recovery) when the drill is not done since it is not sensible to be able to do secondary ‘recovery’ without the primary ‘drill’.</p>
+</div>
+<div id="finding-the-optimal-policy-2" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Finding the optimal policy</h3>
+<p>Let us pass this structure to the Gibbs sampler (JAGS) and track the variables of interest (these nodes are useful to compute the conditional expectations if necessary).
+Please note that the <code>rjags</code> package is just an interface to the JAGS library. Make sure you have installed JAGS-4.exe (can be downloaded from <a href="http://www.sourceforge.net/projects/mcmc-jags/files">here</a>)
+We are trying to compute the expected utility of the policy: (‘action’).
+<code>HydeNet</code> provides a policyMatrix() function to enumerate all policies of a given decision network. This decision network is solved using Gibbs sampling with 10^6 samples. We could use them as follows:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="influence-diagrams.html#cb67-1" aria-hidden="true" tabindex="-1"></a>policy_ow <span class="ot">&lt;-</span> <span class="fu">policyMatrix</span>(ow.net)</span>
+<span id="cb67-2"><a href="influence-diagrams.html#cb67-2" aria-hidden="true" tabindex="-1"></a>compiledNet_ow <span class="ot">&lt;-</span> <span class="fu">compileDecisionModel</span>(ow.net, <span class="at">policyMatrix =</span> policy_ow)</span></code></pre></div>
+<pre><code>## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 0
+##    Unobserved stochastic nodes: 4
+##    Total graph size: 54
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 2
+##    Unobserved stochastic nodes: 2
+##    Total graph size: 50
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 2
+##    Unobserved stochastic nodes: 2
+##    Total graph size: 51
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 2
+##    Unobserved stochastic nodes: 2
+##    Total graph size: 51
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 2
+##    Unobserved stochastic nodes: 2
+##    Total graph size: 50
+## 
+## Initializing model</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="influence-diagrams.html#cb69-1" aria-hidden="true" tabindex="-1"></a>trackedVars_ow <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;oil_content&quot;</span>,<span class="st">&quot;seismic_results&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;cost&quot;</span>,<span class="st">&quot;drill&quot;</span>,<span class="st">&quot;reward&quot;</span>)</span>
+<span id="cb69-2"><a href="influence-diagrams.html#cb69-2" aria-hidden="true" tabindex="-1"></a>samples_ow <span class="ot">&lt;-</span> <span class="fu">lapply</span>(compiledNet_ow,</span>
+<span id="cb69-3"><a href="influence-diagrams.html#cb69-3" aria-hidden="true" tabindex="-1"></a>                     HydeSim,</span>
+<span id="cb69-4"><a href="influence-diagrams.html#cb69-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">variable.names =</span> trackedVars_ow,</span>
+<span id="cb69-5"><a href="influence-diagrams.html#cb69-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">n.iter =</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">5</span>)</span></code></pre></div>
+<p>Let us compute a single utility on samples:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="influence-diagrams.html#cb70-1" aria-hidden="true" tabindex="-1"></a>samples_ow <span class="ot">&lt;-</span> <span class="fu">lapply</span>(samples_ow, <span class="cf">function</span>(x) </span>
+<span id="cb70-2"><a href="influence-diagrams.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(x, <span class="at">utility =</span> x<span class="sc">$</span>reward <span class="sc">+</span> x<span class="sc">$</span>cost))</span></code></pre></div>
+<p>Now we can view all expectations at once by combining policies and the computed expectations:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="influence-diagrams.html#cb71-1" aria-hidden="true" tabindex="-1"></a>results_ow <span class="ot">&lt;-</span> <span class="fu">lapply</span>(samples_ow, <span class="cf">function</span>(l) <span class="fu">mean</span>(l<span class="sc">$</span>utility))</span>
+<span id="cb71-2"><a href="influence-diagrams.html#cb71-2" aria-hidden="true" tabindex="-1"></a>results_ow <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">unlist</span>(results_ow))</span>
+<span id="cb71-3"><a href="influence-diagrams.html#cb71-3" aria-hidden="true" tabindex="-1"></a>results_ow <span class="ot">&lt;-</span> <span class="fu">cbind</span>(policy_ow, results_ow)</span>
+<span id="cb71-4"><a href="influence-diagrams.html#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(results_ow)[<span class="fu">ncol</span>(policy_ow)<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;utility&quot;</span></span></code></pre></div>
+<p>The results according policies are given below:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="influence-diagrams.html#cb72-1" aria-hidden="true" tabindex="-1"></a>results_ow[]</span></code></pre></div>
+<pre><code>##   test drill  utility
+## 1    1     1   9.6214
+## 2    2     1  20.2337
+## 3    1     2 -10.0000
+## 4    2     2   0.0000</code></pre>
+<p>According to the policies, all utility values seem feasible and we don’t have any conceptual error in the model.
+The optimal policy seems to be:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="influence-diagrams.html#cb74-1" aria-hidden="true" tabindex="-1"></a>results_ow[results_ow<span class="sc">$</span>utility <span class="sc">==</span> <span class="fu">max</span>(results_ow<span class="sc">$</span>utility),] </span></code></pre></div>
+<pre><code>##   test drill utility
+## 2    2     1 20.2337</code></pre>
+<p>..the second policy which means DO NOT ‘test’, and DO ‘drill’ which results in an expected reward of app. 19868.3$.</p>
+<p>As extra information to be obtained from the output (also to double check the validity of this model in this case),</p>
+<p>Among the cases where it is decided not to ?drill? (3,4,7 and 8), it is sensible that the decision of not doing ?test? and not doing ?recovery? must be taken. It is clearly seen from result table.
+So when you do drill, you simply do not ?test?. The utility results can be seen from the following table:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="influence-diagrams.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>oil_content<span class="sc">==</span><span class="st">&quot;dry&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] -80
+## 
+## [[2]]
+## [1] -70
+## 
+## [[3]]
+## [1] -10
+## 
+## [[4]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="influence-diagrams.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>oil_content<span class="sc">==</span><span class="st">&quot;wet&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 40
+## 
+## [[2]]
+## [1] 50
+## 
+## [[3]]
+## [1] -10
+## 
+## [[4]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="influence-diagrams.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>oil_content<span class="sc">==</span><span class="st">&quot;soak&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 190
+## 
+## [[2]]
+## [1] 200
+## 
+## [[3]]
+## [1] -10
+## 
+## [[4]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="influence-diagrams.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>seismic_results<span class="sc">==</span><span class="st">&quot;ns&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] -35.42034
+## 
+## [[2]]
+## [1] 20.0301
+## 
+## [[3]]
+## [1] -10
+## 
+## [[4]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="influence-diagrams.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>seismic_results<span class="sc">==</span><span class="st">&quot;os&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 12.41259
+## 
+## [[2]]
+## [1] 20.55022
+## 
+## [[3]]
+## [1] -10
+## 
+## [[4]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="influence-diagrams.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>seismic_results<span class="sc">==</span><span class="st">&quot;cs&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 73.30904
+## 
+## [[2]]
+## [1] 20.12121
+## 
+## [[3]]
+## [1] -10
+## 
+## [[4]]
+## [1] 0</code></pre>
+</div>
+</div>
+<div id="extended-oil-wildcatter-problem" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Extended Oil-Wildcatter Problem:</h2>
+<p>Extend the Oil Wildcatter problem to include the following: After drilling, striking oil, and extracting an optimal amount using primary recovery techniques, the wildcatter has the option of ex- tracting more oil using secondary recovery techniques at an additional cost of $20,000. Secondary recovery will result in no recovery (nr) with associated revenues of $0, low recovery (lr) with associated revenues of $30,000 or high recovery, (hr) with associated revenue of $50,000. The amount of secondary recovery depends on the amount of oil as well. If the well is wet, the conditional probabilities of nr, lr, and hr are 0.5, 0.4 and 0.1, respectively. If the well is soaking, the corresponding probabilities are 0.3, 0.5, 0.2.</p>
+<div id="defining-the-extended-network-in-hydenet-1" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Defining the extended network in HydeNet</h3>
+<p>Our first task will be to represent and solve the extended oil-wildcatter influence diagram using HydeNet. We generate the network in HydeNet as follows;</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="influence-diagrams.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HydeNet)</span>
+<span id="cb88-2"><a href="influence-diagrams.html#cb88-2" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">HydeNetwork</span>(<span class="sc">~</span> cost <span class="sc">|</span> test </span>
+<span id="cb88-3"><a href="influence-diagrams.html#cb88-3" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">+</span> drill <span class="sc">|</span> test<span class="sc">*</span>seismic_results </span>
+<span id="cb88-4"><a href="influence-diagrams.html#cb88-4" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">+</span> seismic_results <span class="sc">|</span> test<span class="sc">*</span>oil_content </span>
+<span id="cb88-5"><a href="influence-diagrams.html#cb88-5" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">+</span> reward <span class="sc">|</span> drill<span class="sc">*</span>oil_content </span>
+<span id="cb88-6"><a href="influence-diagrams.html#cb88-6" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">+</span> recovery <span class="sc">|</span> drill<span class="sc">*</span>seismic_results</span>
+<span id="cb88-7"><a href="influence-diagrams.html#cb88-7" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">+</span> extra_oil_content <span class="sc">|</span> oil_content</span>
+<span id="cb88-8"><a href="influence-diagrams.html#cb88-8" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">+</span> recovery_reward <span class="sc">|</span> recovery<span class="sc">*</span>extra_oil_content)</span></code></pre></div>
+<p>For the chance node ‘oil_content’:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="influence-diagrams.html#cb89-1" aria-hidden="true" tabindex="-1"></a>oil_content_prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.3</span>,<span class="fl">0.2</span>) <span class="co">#Prior probability for dry, wet and soaking.</span></span>
+<span id="cb89-2"><a href="influence-diagrams.html#cb89-2" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow2.net, oil_content, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>oil_content_prob, oil_content), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;dry&quot;</span>,<span class="st">&quot;wet&quot;</span>,<span class="st">&quot;soak&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>For the decision nodes ‘test’, ‘drill’ and ‘recovery’:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="influence-diagrams.html#cb90-1" aria-hidden="true" tabindex="-1"></a>dprob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>) <span class="co">#Probability of decision nodes represent do and don&#39;t.</span></span>
+<span id="cb90-2"><a href="influence-diagrams.html#cb90-2" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow2.net, test, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>dprob, test), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;test&quot;</span>,<span class="st">&quot;dont_test&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb90-3"><a href="influence-diagrams.html#cb90-3" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow2.net, drill, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>dprob, drill), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;drill&quot;</span>,<span class="st">&quot;dont_drill&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb90-4"><a href="influence-diagrams.html#cb90-4" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow2.net, recovery, <span class="at">nodeType=</span><span class="st">&quot;dcat&quot;</span>, <span class="at">pi=</span><span class="fu">vectorProbs</span>(<span class="at">p=</span>dprob, recovery), <span class="at">factorLevels =</span> <span class="fu">c</span>(<span class="st">&quot;recovery&quot;</span>,<span class="st">&quot;dont_recovery&quot;</span>), <span class="at">validate =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>For the chance node ‘seismic_results’:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="influence-diagrams.html#cb91-1" aria-hidden="true" tabindex="-1"></a>cpt_seismic_results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/canaytore/bayesian-networks/raw/main/data/cpt_seismic_results.rds&quot;</span>))</span>
+<span id="cb91-2"><a href="influence-diagrams.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co">#The file ?cpt_seismic_results.rds? was created using the inputCPT() function of HydeNet. It stands for the conditional probability table of the seismic results based on parent nodes which are &#39;test&#39; and &#39;oil_content&#39;.</span></span>
+<span id="cb91-3"><a href="influence-diagrams.html#cb91-3" aria-hidden="true" tabindex="-1"></a>cpt_seismic_results</span></code></pre></div>
+<pre><code>## , , seismic_results = ns
+## 
+##            oil_content
+## test         dry  wet soak
+##   test      0.60 0.20 0.20
+##   dont_test 0.33 0.33 0.33
+## 
+## , , seismic_results = os
+## 
+##            oil_content
+## test         dry  wet soak
+##   test      0.30 0.40 0.30
+##   dont_test 0.33 0.33 0.33
+## 
+## , , seismic_results = cs
+## 
+##            oil_content
+## test         dry  wet soak
+##   test      0.10 0.40 0.50
+##   dont_test 0.34 0.34 0.34</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="influence-diagrams.html#cb93-1" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setNodeModels</span>(ow2.net, cpt_seismic_results)</span></code></pre></div>
+<p>For the chance node ‘extra_oil_content’:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="influence-diagrams.html#cb94-1" aria-hidden="true" tabindex="-1"></a>cpt_extra_oil_content <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/canaytore/bayesian-networks/raw/main/data/cpt_extra_oil_content.rds&quot;</span>))</span>
+<span id="cb94-2"><a href="influence-diagrams.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="co">#The file ?cpt_recovery_level.rds? was created using the inputCPT() function of HydeNet. It stands for the conditional probability table of the recovery levels based on parent nodes which are &#39;drill&#39; and &#39;oil_content&#39;.</span></span>
+<span id="cb94-3"><a href="influence-diagrams.html#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="co">#The trick here is that &#39;recovery_level&#39; should exactly be nr (no recovery) when the drill is not done since it is not sensible to be able to do &#39;recovery&#39; without the &#39;drill&#39;.</span></span>
+<span id="cb94-4"><a href="influence-diagrams.html#cb94-4" aria-hidden="true" tabindex="-1"></a>cpt_extra_oil_content</span></code></pre></div>
+<pre><code>##            extra_oil_content
+## oil_content  nr  lr  hr
+##        dry  0.2 0.1 0.7
+##        wet  0.5 0.4 0.1
+##        soak 0.3 0.5 0.2</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="influence-diagrams.html#cb96-1" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setNodeModels</span>(ow2.net, cpt_extra_oil_content)</span></code></pre></div>
+<p>For the utility node ‘cost’:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="influence-diagrams.html#cb97-1" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow2.net, cost, <span class="st">&quot;determ&quot;</span>, <span class="at">define=</span><span class="fu">fromFormula</span>(),</span>
+<span id="cb97-2"><a href="influence-diagrams.html#cb97-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nodeFormula =</span> cost <span class="sc">~</span> <span class="fu">ifelse</span>(test <span class="sc">==</span> <span class="st">&quot;test&quot;</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p>For the utility node ‘reward’:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="influence-diagrams.html#cb98-1" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow2.net, reward, <span class="st">&quot;determ&quot;</span>, <span class="at">define=</span><span class="fu">fromFormula</span>(),</span>
+<span id="cb98-2"><a href="influence-diagrams.html#cb98-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nodeFormula =</span> reward <span class="sc">~</span> <span class="fu">ifelse</span>(oil_content <span class="sc">==</span> <span class="st">&quot;dry&quot;</span>,</span>
+<span id="cb98-3"><a href="influence-diagrams.html#cb98-3" aria-hidden="true" tabindex="-1"></a>                                                      <span class="fu">ifelse</span>(drill <span class="sc">==</span> <span class="st">&quot;drill&quot;</span>, <span class="sc">-</span><span class="dv">70</span>, <span class="dv">0</span>),</span>
+<span id="cb98-4"><a href="influence-diagrams.html#cb98-4" aria-hidden="true" tabindex="-1"></a>                                                      <span class="fu">ifelse</span>(oil_content <span class="sc">==</span> <span class="st">&quot;wet&quot;</span>,</span>
+<span id="cb98-5"><a href="influence-diagrams.html#cb98-5" aria-hidden="true" tabindex="-1"></a>                                                             <span class="fu">ifelse</span>(drill <span class="sc">==</span> <span class="st">&quot;drill&quot;</span>, <span class="dv">50</span>, <span class="dv">0</span>),</span>
+<span id="cb98-6"><a href="influence-diagrams.html#cb98-6" aria-hidden="true" tabindex="-1"></a>                                                             <span class="fu">ifelse</span>(drill <span class="sc">==</span> <span class="st">&quot;drill&quot;</span>, <span class="dv">200</span>, <span class="dv">0</span>))))</span></code></pre></div>
+<p>For the utility node ‘recovery_reward’:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="influence-diagrams.html#cb99-1" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setNode</span>(ow2.net, recovery_reward, <span class="st">&quot;determ&quot;</span>, <span class="at">define=</span><span class="fu">fromFormula</span>(),</span>
+<span id="cb99-2"><a href="influence-diagrams.html#cb99-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nodeFormula =</span> recovery_reward <span class="sc">~</span> <span class="fu">ifelse</span>(extra_oil_content <span class="sc">==</span> <span class="st">&quot;nr&quot;</span>,</span>
+<span id="cb99-3"><a href="influence-diagrams.html#cb99-3" aria-hidden="true" tabindex="-1"></a>                                                         <span class="fu">ifelse</span>(recovery <span class="sc">==</span> <span class="st">&quot;recovery&quot;</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="dv">0</span>),</span>
+<span id="cb99-4"><a href="influence-diagrams.html#cb99-4" aria-hidden="true" tabindex="-1"></a>                                                         <span class="fu">ifelse</span>(extra_oil_content <span class="sc">==</span> <span class="st">&quot;lr&quot;</span>,</span>
+<span id="cb99-5"><a href="influence-diagrams.html#cb99-5" aria-hidden="true" tabindex="-1"></a>                                                                <span class="fu">ifelse</span>(recovery <span class="sc">==</span> <span class="st">&quot;recovery&quot;</span>, <span class="dv">10</span>, <span class="dv">0</span>),</span>
+<span id="cb99-6"><a href="influence-diagrams.html#cb99-6" aria-hidden="true" tabindex="-1"></a>                                                                <span class="fu">ifelse</span>(recovery <span class="sc">==</span> <span class="st">&quot;recovery&quot;</span>, <span class="dv">30</span>, <span class="dv">0</span>))))</span>
+<span id="cb99-7"><a href="influence-diagrams.html#cb99-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-8"><a href="influence-diagrams.html#cb99-8" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setDecisionNodes</span>(ow2.net, test, drill, recovery) <span class="co">#Setting the decision nodes</span></span>
+<span id="cb99-9"><a href="influence-diagrams.html#cb99-9" aria-hidden="true" tabindex="-1"></a>ow2.net <span class="ot">&lt;-</span> <span class="fu">setUtilityNodes</span>(ow2.net, cost, reward, recovery_reward) <span class="co">#Setting the utility nodes</span></span>
+<span id="cb99-10"><a href="influence-diagrams.html#cb99-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ow2.net) <span class="co">#Plotting the influence diagram of extended version of oil-wildcatter problem</span></span></code></pre></div>
+<div id="htmlwidget-1727cbcd9d9e35bd4a36" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1727cbcd9d9e35bd4a36">{"x":{"diagram":"digraph {\n\n\n\n\n  \"1\" [label = \"cost\", shape = \"diamond\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFB2\"] \n  \"2\" [label = \"test\", shape = \"rect\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#6BAED6\"] \n  \"3\" [label = \"drill\", shape = \"rect\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#6BAED6\"] \n  \"4\" [label = \"seismic_results\", shape = \"ellipse\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFFF\"] \n  \"5\" [label = \"oil_content\", shape = \"ellipse\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFFF\"] \n  \"6\" [label = \"reward\", shape = \"diamond\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFB2\"] \n  \"7\" [label = \"recovery\", shape = \"rect\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#6BAED6\"] \n  \"8\" [label = \"extra_oil_content\", shape = \"ellipse\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFFF\"] \n  \"9\" [label = \"recovery_reward\", shape = \"diamond\", fontcolor = \"black\", color = \"black\", style = \"filled\", fillcolor = \"#FFFFB2\"] \n  \"2\"->\"1\" \n  \"2\"->\"3\" \n  \"4\"->\"3\" \n  \"2\"->\"4\" \n  \"5\"->\"4\" \n  \"3\"->\"6\" \n  \"5\"->\"6\" \n  \"3\"->\"7\" \n  \"4\"->\"7\" \n  \"5\"->\"8\" \n  \"7\"->\"9\" \n  \"8\"->\"9\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>The trick is here that we will have precise information about ‘oil_content’ after the decision ‘drill’.
+Besides, there must be an arc from ?drill? to ?recovery_level? since ‘recovery_level’ should exactly be nr (no recovery) when the drill is not done since it is not sensible to be able to do secondary ‘recovery’ without the primary ‘drill’.</p>
+</div>
+<div id="finding-the-optimal-policy-3" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Finding the optimal policy</h3>
+<p>Let us pass this structure to the Gibbs sampler (JAGS) and track the variables of interest (these nodes are useful to compute the conditional expectations if necessary).
+Please note that the <code>rjags</code> package is just an interface to the JAGS library. Make sure you have installed JAGS-4.exe (can be downloaded from <a href="http://www.sourceforge.net/projects/mcmc-jags/files">here</a>)
+We are trying to compute the expected utility of the policy: (‘action’).
+<code>HydeNet</code> provides a policyMatrix() function to enumerate all policies of a given decision network. This decision network is solved using Gibbs sampling with 10^6 samples. We could use them as follows:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="influence-diagrams.html#cb100-1" aria-hidden="true" tabindex="-1"></a>policy_ow2 <span class="ot">&lt;-</span> <span class="fu">policyMatrix</span>(ow2.net)</span>
+<span id="cb100-2"><a href="influence-diagrams.html#cb100-2" aria-hidden="true" tabindex="-1"></a>compiledNet_ow2 <span class="ot">&lt;-</span> <span class="fu">compileDecisionModel</span>(ow2.net, <span class="at">policyMatrix =</span> policy_ow2)</span></code></pre></div>
+<pre><code>## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 0
+##    Unobserved stochastic nodes: 6
+##    Total graph size: 81
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 3
+##    Unobserved stochastic nodes: 3
+##    Total graph size: 76
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 3
+##    Unobserved stochastic nodes: 3
+##    Total graph size: 77
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 3
+##    Unobserved stochastic nodes: 3
+##    Total graph size: 77
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 3
+##    Unobserved stochastic nodes: 3
+##    Total graph size: 77
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 3
+##    Unobserved stochastic nodes: 3
+##    Total graph size: 77
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 3
+##    Unobserved stochastic nodes: 3
+##    Total graph size: 77
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 3
+##    Unobserved stochastic nodes: 3
+##    Total graph size: 77
+## 
+## Initializing model
+## 
+## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 3
+##    Unobserved stochastic nodes: 3
+##    Total graph size: 76
+## 
+## Initializing model</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="influence-diagrams.html#cb102-1" aria-hidden="true" tabindex="-1"></a>trackedVars_ow2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;oil_content&quot;</span>,<span class="st">&quot;seismic_results&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;cost&quot;</span>,<span class="st">&quot;drill&quot;</span>,<span class="st">&quot;recovery&quot;</span>,<span class="st">&quot;reward&quot;</span>,<span class="st">&quot;extra_oil_content&quot;</span>,<span class="st">&quot;recovery_reward&quot;</span>)</span>
+<span id="cb102-2"><a href="influence-diagrams.html#cb102-2" aria-hidden="true" tabindex="-1"></a>samples_ow2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(compiledNet_ow2,</span>
+<span id="cb102-3"><a href="influence-diagrams.html#cb102-3" aria-hidden="true" tabindex="-1"></a>                     HydeSim,</span>
+<span id="cb102-4"><a href="influence-diagrams.html#cb102-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">variable.names =</span> trackedVars_ow2,</span>
+<span id="cb102-5"><a href="influence-diagrams.html#cb102-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">n.iter =</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">5</span>)</span></code></pre></div>
+<p>Let us compute a single utility on samples:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="influence-diagrams.html#cb103-1" aria-hidden="true" tabindex="-1"></a>samples_ow2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(x) </span>
+<span id="cb103-2"><a href="influence-diagrams.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(x, <span class="at">utility =</span> x<span class="sc">$</span>reward <span class="sc">+</span> x<span class="sc">$</span>cost <span class="sc">+</span> x<span class="sc">$</span>recovery_reward))</span></code></pre></div>
+<p>Now we can view all expectations at once by combining policies and the computed expectations:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="influence-diagrams.html#cb104-1" aria-hidden="true" tabindex="-1"></a>results_ow2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l<span class="sc">$</span>utility))</span>
+<span id="cb104-2"><a href="influence-diagrams.html#cb104-2" aria-hidden="true" tabindex="-1"></a>results_ow2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">unlist</span>(results_ow2))</span>
+<span id="cb104-3"><a href="influence-diagrams.html#cb104-3" aria-hidden="true" tabindex="-1"></a>results_ow2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(policy_ow2, results_ow2)</span>
+<span id="cb104-4"><a href="influence-diagrams.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(results_ow2)[<span class="fu">ncol</span>(policy_ow2)<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;utility&quot;</span></span></code></pre></div>
+<p>The results according policies are given below:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="influence-diagrams.html#cb105-1" aria-hidden="true" tabindex="-1"></a>results_ow2[]</span></code></pre></div>
+<pre><code>##   test drill recovery  utility
+## 1    1     1        1  19.5100
+## 2    2     1        1  29.2822
+## 3    1     2        1  -0.8786
+## 4    2     2        1   9.0800
+## 5    1     1        2  10.2388
+## 6    2     1        2  19.8986
+## 7    1     2        2 -10.0000
+## 8    2     2        2   0.0000</code></pre>
+<p>According to the policies, all utility values seem feasible and we don’t have any conceptual error in the model.
+The optimal policy seems to be:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="influence-diagrams.html#cb107-1" aria-hidden="true" tabindex="-1"></a>results_ow2[results_ow2<span class="sc">$</span>utility <span class="sc">==</span> <span class="fu">max</span>(results_ow2<span class="sc">$</span>utility),] </span></code></pre></div>
+<pre><code>##   test drill recovery utility
+## 2    2     1        1 29.2822</code></pre>
+<p>..the second policy which means DO NOT ‘test’, DO ‘drill’, and DO ‘recovery’ which results in an expected reward of app. 29254.8$.</p>
+<p>As extra information to be obtained from the output (also to double check the validity of this model in this case),</p>
+<p>Among the cases where it is decided not to ?drill? (3,4,7 and 8), it is sensible that the decision of not doing ?test? and not doing ?recovery? must be taken. It is clearly seen from result table.
+So when you do drill, you simply do not ?test?. The utility results can be seen from the following table:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="influence-diagrams.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>oil_content<span class="sc">==</span><span class="st">&quot;dry&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] -62.03975
+## 
+## [[2]]
+## [1] -52.05873
+## 
+## [[3]]
+## [1] 8.0135
+## 
+## [[4]]
+## [1] 18.12075
+## 
+## [[5]]
+## [1] -80
+## 
+## [[6]]
+## [1] -70
+## 
+## [[7]]
+## [1] -10
+## 
+## [[8]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="influence-diagrams.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>oil_content<span class="sc">==</span><span class="st">&quot;wet&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 37.01576
+## 
+## [[2]]
+## [1] 46.82637
+## 
+## [[3]]
+## [1] -13.0174
+## 
+## [[4]]
+## [1] -3.049024
+## 
+## [[5]]
+## [1] 40
+## 
+## [[6]]
+## [1] 50
+## 
+## [[7]]
+## [1] -10
+## 
+## [[8]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="influence-diagrams.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>oil_content<span class="sc">==</span><span class="st">&quot;soak&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 194.9721
+## 
+## [[2]]
+## [1] 205.1909
+## 
+## [[3]]
+## [1] -5.091019
+## 
+## [[4]]
+## [1] 4.919315
+## 
+## [[5]]
+## [1] 190
+## 
+## [[6]]
+## [1] 200
+## 
+## [[7]]
+## [1] -10
+## 
+## [[8]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="influence-diagrams.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>seismic_results<span class="sc">==</span><span class="st">&quot;ns&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] -21.9302
+## 
+## [[2]]
+## [1] 29.53396
+## 
+## [[3]]
+## [1] 3.55675
+## 
+## [[4]]
+## [1] 8.945417
+## 
+## [[5]]
+## [1] -35.04353
+## 
+## [[6]]
+## [1] 19.47434
+## 
+## [[7]]
+## [1] -10
+## 
+## [[8]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="influence-diagrams.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>seismic_results<span class="sc">==</span><span class="st">&quot;os&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 21.30971
+## 
+## [[2]]
+## [1] 28.98038
+## 
+## [[3]]
+## [1] -2.029637
+## 
+## [[4]]
+## [1] 9.20438
+## 
+## [[5]]
+## [1] 13.12386
+## 
+## [[6]]
+## [1] 20.30598
+## 
+## [[7]]
+## [1] -10
+## 
+## [[8]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="influence-diagrams.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>seismic_results<span class="sc">==</span><span class="st">&quot;cs&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 78.18684
+## 
+## [[2]]
+## [1] 29.33302
+## 
+## [[3]]
+## [1] -6.132648
+## 
+## [[4]]
+## [1] 9.089307
+## 
+## [[5]]
+## [1] 73.76556
+## 
+## [[6]]
+## [1] 19.91059
+## 
+## [[7]]
+## [1] -10
+## 
+## [[8]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="influence-diagrams.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>extra_oil_content<span class="sc">==</span><span class="st">&quot;nr&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 10.7497
+## 
+## [[2]]
+## [1] 20.09325
+## 
+## [[3]]
+## [1] -30
+## 
+## [[4]]
+## [1] -20
+## 
+## [[5]]
+## [1] 30.92412
+## 
+## [[6]]
+## [1] 39.52602
+## 
+## [[7]]
+## [1] -10
+## 
+## [[8]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="influence-diagrams.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>extra_oil_content<span class="sc">==</span><span class="st">&quot;lr&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 83.25936
+## 
+## [[2]]
+## [1] 93.20159
+## 
+## [[3]]
+## [1] 0
+## 
+## [[4]]
+## [1] 10
+## 
+## [[5]]
+## [1] 73.16703
+## 
+## [[6]]
+## [1] 82.96354
+## 
+## [[7]]
+## [1] -10
+## 
+## [[8]]
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="influence-diagrams.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(samples_ow2, <span class="cf">function</span>(l) <span class="fu">mean</span>(l[l<span class="sc">$</span>extra_oil_content<span class="sc">==</span><span class="st">&quot;hr&quot;</span>,]<span class="sc">$</span>utility))</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] -15.49039
+## 
+## [[2]]
+## [1] -4.964774
+## 
+## [[3]]
+## [1] 20
+## 
+## [[4]]
+## [1] 30
+## 
+## [[5]]
+## [1] -45.64758
+## 
+## [[6]]
+## [1] -35.69171
+## 
+## [[7]]
+## [1] -10
+## 
+## [[8]]
+## [1] 0</code></pre>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-started-with.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "whatsapp", "linkedin", "weibo"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bayesian_networks.pdf", "bayesian_networks.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

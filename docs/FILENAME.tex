@@ -343,6 +343,185 @@ Plotting P(D=OUT \textbar{} B=YES, F=TRUE) comparing both mle and bayes methods:
 
 \includegraphics{FILENAME_files/figure-latex/unnamed-chunk-10-1.pdf}
 
+\hypertarget{hydenet}{%
+\subsection{HydeNet}\label{hydenet}}
+
+\hypertarget{extended-oil-wildcatter-problem}{%
+\subsubsection{Extended Oil-Wildcatter Problem:}\label{extended-oil-wildcatter-problem}}
+
+\#Part 1.a) Define the extended network in HydeNet.
+
+\#Our first task will be to represent and solve the extended oil-wildcatter influence diagram using HydeNet. We generate the network in HydeNet as follows;
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(HydeNet)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'HydeNet' was built under R version 4.0.5
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: nnet
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{HydeNetwork}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ cost }\SpecialCharTok{|}\NormalTok{ test }
+                      \SpecialCharTok{+}\NormalTok{ drill }\SpecialCharTok{|}\NormalTok{ test}\SpecialCharTok{*}\NormalTok{seismic\_results }
+                      \SpecialCharTok{+}\NormalTok{ seismic\_results }\SpecialCharTok{|}\NormalTok{ test}\SpecialCharTok{*}\NormalTok{oil\_content }
+                      \SpecialCharTok{+}\NormalTok{ drill\_reward }\SpecialCharTok{|}\NormalTok{ drill}\SpecialCharTok{*}\NormalTok{oil\_content }
+                      \SpecialCharTok{+}\NormalTok{ recovery }\SpecialCharTok{|}\NormalTok{ drill}\SpecialCharTok{*}\NormalTok{oil\_content}
+                      \SpecialCharTok{+}\NormalTok{ recovery\_level }\SpecialCharTok{|}\NormalTok{ drill}\SpecialCharTok{*}\NormalTok{oil\_content}
+                      \SpecialCharTok{+}\NormalTok{ recovery\_reward }\SpecialCharTok{|}\NormalTok{ recovery}\SpecialCharTok{*}\NormalTok{recovery\_level)}
+\end{Highlighting}
+\end{Shaded}
+
+For the chance node `oil\_content':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{oil\_content\_prob }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.2}\NormalTok{) }\CommentTok{\#Prior probability for dry, wet and soaking.}
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setNode}\NormalTok{(ow.net, oil\_content, }\AttributeTok{nodeType=}\StringTok{"dcat"}\NormalTok{, }\AttributeTok{pi=}\FunctionTok{vectorProbs}\NormalTok{(}\AttributeTok{p=}\NormalTok{oil\_content\_prob, oil\_content), }\AttributeTok{factorLevels =} \FunctionTok{c}\NormalTok{(}\StringTok{"dry"}\NormalTok{,}\StringTok{"wet"}\NormalTok{,}\StringTok{"soak"}\NormalTok{), }\AttributeTok{validate =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For the decision nodes `test', `drill' and `recovery':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dprob }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{) }\CommentTok{\#Probability of decision nodes represent do and don\textquotesingle{}t.}
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setNode}\NormalTok{(ow.net, test, }\AttributeTok{nodeType=}\StringTok{"dcat"}\NormalTok{, }\AttributeTok{pi=}\FunctionTok{vectorProbs}\NormalTok{(}\AttributeTok{p=}\NormalTok{dprob, test), }\AttributeTok{factorLevels =} \FunctionTok{c}\NormalTok{(}\StringTok{"test"}\NormalTok{,}\StringTok{"dont\_test"}\NormalTok{), }\AttributeTok{validate =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setNode}\NormalTok{(ow.net, drill, }\AttributeTok{nodeType=}\StringTok{"dcat"}\NormalTok{, }\AttributeTok{pi=}\FunctionTok{vectorProbs}\NormalTok{(}\AttributeTok{p=}\NormalTok{dprob, drill), }\AttributeTok{factorLevels =} \FunctionTok{c}\NormalTok{(}\StringTok{"drill"}\NormalTok{,}\StringTok{"dont\_drill"}\NormalTok{), }\AttributeTok{validate =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setNode}\NormalTok{(ow.net, recovery, }\AttributeTok{nodeType=}\StringTok{"dcat"}\NormalTok{, }\AttributeTok{pi=}\FunctionTok{vectorProbs}\NormalTok{(}\AttributeTok{p=}\NormalTok{dprob, recovery), }\AttributeTok{factorLevels =} \FunctionTok{c}\NormalTok{(}\StringTok{"recovery"}\NormalTok{,}\StringTok{"dont\_recovery"}\NormalTok{), }\AttributeTok{validate =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For the chance node `seismic\_results':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cpt\_seismic\_results }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{url}\NormalTok{(}\StringTok{"https://github.com/canaytore/bayesian{-}networks/raw/main/data/cpt\_seismic\_results.rds"}\NormalTok{))}
+\CommentTok{\#The file ?cpt\_seismic\_results.rds? was created using the inputCPT() function of HydeNet. It stands for the conditional probability table of the seismic results based on parent nodes which are \textquotesingle{}test\textquotesingle{} and \textquotesingle{}oil\_content\textquotesingle{}.}
+\NormalTok{cpt\_seismic\_results}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## , , seismic_results = ns
+## 
+##            oil_content
+## test         dry  wet soak
+##   test      0.60 0.20 0.20
+##   dont_test 0.33 0.33 0.33
+## 
+## , , seismic_results = os
+## 
+##            oil_content
+## test         dry  wet soak
+##   test      0.30 0.40 0.30
+##   dont_test 0.33 0.33 0.33
+## 
+## , , seismic_results = cs
+## 
+##            oil_content
+## test         dry  wet soak
+##   test      0.10 0.40 0.50
+##   dont_test 0.34 0.34 0.34
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setNodeModels}\NormalTok{(ow.net, cpt\_seismic\_results)}
+\end{Highlighting}
+\end{Shaded}
+
+For the chance node `recovery\_level':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cpt\_recovery\_level }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\FunctionTok{url}\NormalTok{(}\StringTok{"https://github.com/canaytore/bayesian{-}networks/raw/main/data/cpt\_recovery\_level.rds"}\NormalTok{))}
+\CommentTok{\#The file ?cpt\_recovery\_level.rds? was created using the inputCPT() function of HydeNet. It stands for the conditional probability table of the recovery levels based on parent nodes which are \textquotesingle{}drill\textquotesingle{} and \textquotesingle{}oil\_content\textquotesingle{}.}
+\CommentTok{\#The trick here is that \textquotesingle{}recovery\_level\textquotesingle{} should exactly be nr (no recovery) when the drill is not done since it is not sensible to be able to do \textquotesingle{}recovery\textquotesingle{} without the \textquotesingle{}drill\textquotesingle{}.}
+\NormalTok{cpt\_recovery\_level}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## , , recovery_level = nr
+## 
+##             oil_content
+## drill        dry wet soak
+##   drill        1 0.5  0.3
+##   dont_drill   1 1.0  1.0
+## 
+## , , recovery_level = lr
+## 
+##             oil_content
+## drill        dry wet soak
+##   drill        0 0.4  0.5
+##   dont_drill   0 0.0  0.0
+## 
+## , , recovery_level = hr
+## 
+##             oil_content
+## drill        dry wet soak
+##   drill        0 0.1  0.2
+##   dont_drill   0 0.0  0.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setNodeModels}\NormalTok{(ow.net, cpt\_recovery\_level)}
+\end{Highlighting}
+\end{Shaded}
+
+For the utility node `cost':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setNode}\NormalTok{(ow.net, cost, }\StringTok{"determ"}\NormalTok{, }\AttributeTok{define=}\FunctionTok{fromFormula}\NormalTok{(),}
+                  \AttributeTok{nodeFormula =}\NormalTok{ cost }\SpecialCharTok{\textasciitilde{}} \FunctionTok{ifelse}\NormalTok{(test }\SpecialCharTok{==} \StringTok{"test"}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{10}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+For the utility node `drill\_reward':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setNode}\NormalTok{(ow.net, drill\_reward, }\StringTok{"determ"}\NormalTok{, }\AttributeTok{define=}\FunctionTok{fromFormula}\NormalTok{(),}
+                  \AttributeTok{nodeFormula =}\NormalTok{ drill\_reward }\SpecialCharTok{\textasciitilde{}} \FunctionTok{ifelse}\NormalTok{(oil\_content }\SpecialCharTok{==} \StringTok{"dry"}\NormalTok{,}
+                                                      \FunctionTok{ifelse}\NormalTok{(drill }\SpecialCharTok{==} \StringTok{"drill"}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{70}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                                                      \FunctionTok{ifelse}\NormalTok{(oil\_content }\SpecialCharTok{==} \StringTok{"wet"}\NormalTok{,}
+                                                             \FunctionTok{ifelse}\NormalTok{(drill }\SpecialCharTok{==} \StringTok{"drill"}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                                                             \FunctionTok{ifelse}\NormalTok{(drill }\SpecialCharTok{==} \StringTok{"drill"}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{0}\NormalTok{))))}
+\end{Highlighting}
+\end{Shaded}
+
+For the utility node `recovery\_reward':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setNode}\NormalTok{(ow.net, recovery\_reward, }\StringTok{"determ"}\NormalTok{, }\AttributeTok{define=}\FunctionTok{fromFormula}\NormalTok{(),}
+                  \AttributeTok{nodeFormula =}\NormalTok{ recovery\_reward }\SpecialCharTok{\textasciitilde{}} \FunctionTok{ifelse}\NormalTok{(recovery\_level }\SpecialCharTok{==} \StringTok{"nr"}\NormalTok{,}
+                                                         \FunctionTok{ifelse}\NormalTok{(recovery }\SpecialCharTok{==} \StringTok{"recovery"}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{20}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                                                         \FunctionTok{ifelse}\NormalTok{(recovery\_level }\SpecialCharTok{==} \StringTok{"lr"}\NormalTok{,}
+                                                                \FunctionTok{ifelse}\NormalTok{(recovery }\SpecialCharTok{==} \StringTok{"recovery"}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                                                                \FunctionTok{ifelse}\NormalTok{(recovery }\SpecialCharTok{==} \StringTok{"recovery"}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{0}\NormalTok{))))}
+
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setDecisionNodes}\NormalTok{(ow.net, test, drill, recovery) }\CommentTok{\#Setting the decision nodes}
+\NormalTok{ow.net }\OtherTok{\textless{}{-}} \FunctionTok{setUtilityNodes}\NormalTok{(ow.net, cost, drill\_reward, recovery\_reward) }\CommentTok{\#Setting the utility nodes}
+\FunctionTok{plot}\NormalTok{(ow.net) }\CommentTok{\#Plotting the influence diagram of extended version of oil{-}wildcatter problem}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FILENAME_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+The trick is here that we will have precise information about `oil\_content' after the decision `drill'.
+Besides, there must be an arc from ?drill? to ?recovery\_level? since `recovery\_level' should exactly be nr (no recovery) when the drill is not done since it is not sensible to be able to do secondary `recovery' without the primary `drill'.
+
 \hypertarget{references}{%
 \section*{References}\label{references}}
 \addcontentsline{toc}{section}{References}

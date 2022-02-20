@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon" />
-<link rel="prev" href="getting-started-with.html"/>
+<link rel="prev" href="influence-diagrams.html"/>
 <link rel="next" href="appendices.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -52,6 +52,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.8/grViz.js"></script>
 
 
 <style type="text/css">
@@ -133,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">BAYESIAN NETWORKS</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
@@ -145,6 +149,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with.html"><a href="getting-started-with.html#what-is-bn"><i class="fa fa-check"></i><b>2.1</b> What is BN?</a></li>
 <li class="chapter" data-level="2.2" data-path="getting-started-with.html"><a href="getting-started-with.html#running-example-is-the-family-out"><i class="fa fa-check"></i><b>2.2</b> Running Example: “Is the Family Out?”</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="influence-diagrams.html"><a href="influence-diagrams.html"><i class="fa fa-check"></i><b>3</b> Influence Diagrams</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#umbrella-problem"><i class="fa fa-check"></i><b>3.1</b> Umbrella Problem</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#finding-the-optimal-policy"><i class="fa fa-check"></i><b>3.1.1</b> Finding the optimal policy</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="influence-diagrams.html"><a href="influence-diagrams.html#incorporating-weather-forecast"><i class="fa fa-check"></i><b>3.2</b> Incorporating Weather Forecast</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#finding-the-optimal-policy-1"><i class="fa fa-check"></i><b>3.2.1</b> Finding the optimal policy</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="influence-diagrams.html"><a href="influence-diagrams.html#oil-wildcatter-problem"><i class="fa fa-check"></i><b>3.3</b> Oil-Wildcatter Problem:</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#defining-the-extended-network-in-hydenet"><i class="fa fa-check"></i><b>3.3.1</b> Defining the extended network in HydeNet</a></li>
+<li class="chapter" data-level="3.3.2" data-path="influence-diagrams.html"><a href="influence-diagrams.html#finding-the-optimal-policy-2"><i class="fa fa-check"></i><b>3.3.2</b> Finding the optimal policy</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="influence-diagrams.html"><a href="influence-diagrams.html#extended-oil-wildcatter-problem"><i class="fa fa-check"></i><b>3.4</b> Extended Oil-Wildcatter Problem:</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="influence-diagrams.html"><a href="influence-diagrams.html#defining-the-extended-network-in-hydenet-1"><i class="fa fa-check"></i><b>3.4.1</b> Defining the extended network in HydeNet</a></li>
+<li class="chapter" data-level="3.4.2" data-path="influence-diagrams.html"><a href="influence-diagrams.html#finding-the-optimal-policy-3"><i class="fa fa-check"></i><b>3.4.2</b> Finding the optimal policy</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i>Appendices</a>
@@ -179,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="getting-started-with.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="influence-diagrams.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="appendices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -222,7 +247,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["FILENAME.pdf", "FILENAME.epub"],
+"download": ["bayesian_networks.pdf", "bayesian_networks.epub"],
 "search": {
 "engine": "fuse",
 "options": null
