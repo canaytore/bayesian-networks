@@ -19,6 +19,54 @@ site: bookdown::bookdown_site
 - What kind of questions can we answer using (quantified) BNs?
 
 
+
+
+# Decision Analysis
+
+
+## Analytics
+
+Analytics is:
+
+- the discovery, interpretation, and communication of meaningful patterns in data (Wikipedia)
+- the scientific process of transforming data into insight for making better decisions (INFORMS 2016)
+
+Types of Analytics
+
+- Descriptive: What is happening?
+- Predictive: What will happen?
+- Prescriptive: What should happen (when we do X)?
+
+### Descriptive Analytics
+
+- Extract information from data, summarise and report
+- Shows the historical and current state of affairs
+- Visualization is important and very valuable
+
+### Predictive Analytics
+
+- Extract information from data and use it to predict classification, trends and behavior patterns.
+- Often the unknown event of interest is in the future, but predictive analytics can be applied to any type of unknown whether it be in the past, present or future.
+- Reduces uncertainty
+- Above a threshold, the accuracy of prediction can be a game changer!
+
+#### Prediction Becomes more Accurate
+
+![prediction_becomes_more_accurate](data/prediction_becomes_more_accurate.JPG)
+
+#### Prediction Becomes Cheaper
+
+- More accurate prediction is now used for traditional prediction tasks (e.g. forecasting weather or demand) and new problems (e.g. translation and navigation).
+- The drop in cost of prediction has two main effects:
+-- creates surprising externalities (e.g. music, video streaming, driving services)
+-- increases the value of complements (data, judgement, and action)
+- If Amazon can predict what consumers want more accurately, they can shift from a shop-then-ship to ship-then-shop strategy.
+
+
+
+
+
+
 # Getting Started with ...
 
 ## What is BN?

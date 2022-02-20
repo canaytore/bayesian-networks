@@ -149,6 +149,86 @@
   What kind of questions can we answer using (quantified) BNs?
 \end{itemize}
 
+\hypertarget{decision-analysis}{%
+\section{Decision Analysis}\label{decision-analysis}}
+
+\hypertarget{analytics}{%
+\subsection{Analytics}\label{analytics}}
+
+Analytics is:
+
+\begin{itemize}
+\tightlist
+\item
+  the discovery, interpretation, and communication of meaningful patterns in data (Wikipedia)
+\item
+  the scientific process of transforming data into insight for making better decisions (INFORMS 2016)
+\end{itemize}
+
+Types of Analytics
+
+\begin{itemize}
+\tightlist
+\item
+  Descriptive: What is happening?
+\item
+  Predictive: What will happen?
+\item
+  Prescriptive: What should happen (when we do X)?
+\end{itemize}
+
+\hypertarget{descriptive-analytics}{%
+\subsubsection{Descriptive Analytics}\label{descriptive-analytics}}
+
+\begin{itemize}
+\tightlist
+\item
+  Extract information from data, summarise and report
+\item
+  Shows the historical and current state of affairs
+\item
+  Visualization is important and very valuable
+\end{itemize}
+
+\hypertarget{predictive-analytics}{%
+\subsubsection{Predictive Analytics}\label{predictive-analytics}}
+
+\begin{itemize}
+\tightlist
+\item
+  Extract information from data and use it to predict classification, trends and behavior patterns.
+\item
+  Often the unknown event of interest is in the future, but predictive analytics can be applied to any type of unknown whether it be in the past, present or future.
+\item
+  Reduces uncertainty
+\item
+  Above a threshold, the accuracy of prediction can be a game changer!
+\end{itemize}
+
+\hypertarget{prediction-becomes-more-accurate}{%
+\paragraph{Prediction Becomes more Accurate}\label{prediction-becomes-more-accurate}}
+
+\begin{figure}
+\centering
+\includegraphics{data/prediction_becomes_more_accurate.JPG}
+\caption{prediction\_becomes\_more\_accurate}
+\end{figure}
+
+\hypertarget{prediction-becomes-cheaper}{%
+\paragraph{Prediction Becomes Cheaper}\label{prediction-becomes-cheaper}}
+
+\begin{itemize}
+\tightlist
+\item
+  More accurate prediction is now used for traditional prediction tasks (e.g.~forecasting weather or demand) and new problems (e.g.~translation and navigation).
+\item
+  The drop in cost of prediction has two main effects:
+  -- creates surprising externalities (e.g.~music, video streaming, driving services)
+  -- increases the value of complements (data, judgement, and action)
+\item
+  If Amazon can predict what consumers want more accurately, they can shift from a shop-then-ship to ship-then-shop strategy.
+\end{itemize}
+
 \hypertarget{getting-started-with}{%
 \section{Getting Started with \ldots{}}\label{getting-started-with}}
 
@@ -485,8 +565,8 @@ The results according policies are given below:
 
 \begin{verbatim}
 ##   action utility
-## 1      1 50.9195
-## 2      2 49.0588
+## 1      1 51.0357
+## 2      2 49.0413
 \end{verbatim}
 
 According to the policies, all utility values seem feasible and we don't have any conceptual error in the model.
@@ -500,7 +580,7 @@ The optimal policy seems to be:
 
 \begin{verbatim}
 ##   action utility
-## 1      1 50.9195
+## 1      1 51.0357
 \end{verbatim}
 
 ..the first policy which means DO the `action', or TAKE the UMBRELLA which results in an expected reward of app. 51.2\%.
@@ -712,8 +792,8 @@ The results according policies are given below:
 
 \begin{verbatim}
 ##   action utility
-## 1      1 51.0049
-## 2      2 49.0035
+## 1      1 50.9370
+## 2      2 49.0182
 \end{verbatim}
 
 According to the policies, all utility values seem feasible and we don't have any conceptual error in the model.
@@ -727,7 +807,7 @@ The optimal policy seems to be:
 
 \begin{verbatim}
 ##   action utility
-## 1      1 51.0049
+## 1      1  50.937
 \end{verbatim}
 
 ..the first policy which means DO the `action', or TAKE the UMBRELLA which results in an expected reward of app. 51.2\%.
@@ -745,10 +825,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 35.87268
+## [1] 35.84213
 ## 
 ## [[2]]
-## [1] 64.02429
+## [1] 64.13773
 \end{verbatim}
 
 \begin{Shaded}
@@ -759,10 +839,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 80.52193
+## [1] 80.67422
 ## 
 ## [[2]]
-## [1] 19.61979
+## [1] 19.49374
 \end{verbatim}
 
 \begin{Shaded}
@@ -773,10 +853,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 54.25092
+## [1] 54.47062
 ## 
 ## [[2]]
-## [1] 45.69221
+## [1] 45.44458
 \end{verbatim}
 
 \hypertarget{oil-wildcatter-problem}{%
@@ -1001,8 +1081,8 @@ The results according policies are given below:
 
 \begin{verbatim}
 ##   test drill  utility
-## 1    1     1  10.2352
-## 2    2     1  20.0480
+## 1    1     1  10.0999
+## 2    2     1  19.8194
 ## 3    1     2 -10.0000
 ## 4    2     2   0.0000
 \end{verbatim}
@@ -1018,7 +1098,7 @@ The optimal policy seems to be:
 
 \begin{verbatim}
 ##   test drill utility
-## 2    2     1  20.048
+## 2    2     1 19.8194
 \end{verbatim}
 
 ..the second policy which means DO NOT `test', and DO `drill' which results in an expected reward of app. 19868.3\$.
@@ -1096,10 +1176,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] -35.06641
+## [1] -34.52488
 ## 
 ## [[2]]
-## [1] 19.8062
+## [1] 19.7724
 ## 
 ## [[3]]
 ## [1] -10
@@ -1116,10 +1196,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 12.7035
+## [1] 12.23146
 ## 
 ## [[2]]
-## [1] 20.06732
+## [1] 19.93669
 ## 
 ## [[3]]
 ## [1] -10
@@ -1136,10 +1216,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 73.6956
+## [1] 73.42454
 ## 
 ## [[2]]
-## [1] 20.26553
+## [1] 19.75029
 ## 
 ## [[3]]
 ## [1] -10
@@ -1446,12 +1526,12 @@ The results according policies are given below:
 
 \begin{verbatim}
 ##   test drill recovery  utility
-## 1    1     1        1  18.9577
-## 2    2     1        1  29.4869
-## 3    1     2        1  -0.8139
-## 4    2     2        1   9.1409
-## 5    1     1        2   9.7390
-## 6    2     1        2  20.6468
+## 1    1     1        1  18.8070
+## 2    2     1        1  28.8537
+## 3    1     2        1  -0.9120
+## 4    2     2        1   9.0303
+## 5    1     1        2  10.0573
+## 6    2     1        2  20.1971
 ## 7    1     2        2 -10.0000
 ## 8    2     2        2   0.0000
 \end{verbatim}
@@ -1467,7 +1547,7 @@ The optimal policy seems to be:
 
 \begin{verbatim}
 ##   test drill recovery utility
-## 2    2     1        1 29.4869
+## 2    2     1        1 28.8537
 \end{verbatim}
 
 ..the second policy which means DO NOT `test', DO `drill', and DO `recovery' which results in an expected reward of app. 29254.8\$.
@@ -1485,16 +1565,16 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] -62.01208
+## [1] -62.1367
 ## 
 ## [[2]]
-## [1] -51.89952
+## [1] -52.20217
 ## 
 ## [[3]]
-## [1] 7.966481
+## [1] 7.975173
 ## 
 ## [[4]]
-## [1] 17.99932
+## [1] 18.00938
 ## 
 ## [[5]]
 ## [1] -80
@@ -1517,16 +1597,16 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 37.09785
+## [1] 36.76149
 ## 
 ## [[2]]
-## [1] 47.28091
+## [1] 46.98567
 ## 
 ## [[3]]
-## [1] -12.90572
+## [1] -13.00685
 ## 
 ## [[4]]
-## [1] -2.866818
+## [1] -3.055105
 ## 
 ## [[5]]
 ## [1] 40
@@ -1549,16 +1629,16 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 195.288
+## [1] 195.2955
 ## 
 ## [[2]]
-## [1] 204.909
+## [1] 205.0323
 ## 
 ## [[3]]
-## [1] -4.665472
+## [1] -4.924701
 ## 
 ## [[4]]
-## [1] 4.915842
+## [1] 4.990539
 ## 
 ## [[5]]
 ## [1] 190
@@ -1581,22 +1661,22 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] -21.3795
+## [1] -21.00713
 ## 
 ## [[2]]
-## [1] 29.46044
+## [1] 28.85583
 ## 
 ## [[3]]
-## [1] 3.440935
+## [1] 3.570592
 ## 
 ## [[4]]
-## [1] 9.051164
+## [1] 9.039149
 ## 
 ## [[5]]
-## [1] -35.46813
+## [1] -34.16339
 ## 
 ## [[6]]
-## [1] 21.10022
+## [1] 20.12479
 ## 
 ## [[7]]
 ## [1] -10
@@ -1613,22 +1693,22 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 19.93585
+## [1] 20.06429
 ## 
 ## [[2]]
-## [1] 30.12603
+## [1] 28.83146
 ## 
 ## [[3]]
-## [1] -1.663371
+## [1] -2.127204
 ## 
 ## [[4]]
-## [1] 9.195239
+## [1] 9.018261
 ## 
 ## [[5]]
-## [1] 12.40004
+## [1] 12.49188
 ## 
 ## [[6]]
-## [1] 19.55506
+## [1] 20.12279
 ## 
 ## [[7]]
 ## [1] -10
@@ -1645,22 +1725,22 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 77.39301
+## [1] 75.54486
 ## 
 ## [[2]]
-## [1] 28.888
+## [1] 28.87323
 ## 
 ## [[3]]
-## [1] -6.132556
+## [1] -6.076192
 ## 
 ## [[4]]
-## [1] 9.174934
+## [1] 9.033356
 ## 
 ## [[5]]
-## [1] 73.13673
+## [1] 73.1546
 ## 
 ## [[6]]
-## [1] 21.27492
+## [1] 20.34042
 ## 
 ## [[7]]
 ## [1] -10
@@ -1677,10 +1757,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 9.498344
+## [1] 9.015594
 ## 
 ## [[2]]
-## [1] 21.03203
+## [1] 19.22409
 ## 
 ## [[3]]
 ## [1] -30
@@ -1689,10 +1769,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 ## [1] -20
 ## 
 ## [[5]]
-## [1] 30.42559
+## [1] 29.84585
 ## 
 ## [[6]]
-## [1] 41.09865
+## [1] 40.6985
 ## 
 ## [[7]]
 ## [1] -10
@@ -1709,10 +1789,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] 83.08043
+## [1] 83.6499
 ## 
 ## [[2]]
-## [1] 93.13836
+## [1] 94.00291
 ## 
 ## [[3]]
 ## [1] 0
@@ -1721,10 +1801,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 ## [1] 10
 ## 
 ## [[5]]
-## [1] 73.27222
+## [1] 73.95996
 ## 
 ## [[6]]
-## [1] 83.68217
+## [1] 83.45931
 ## 
 ## [[7]]
 ## [1] -10
@@ -1741,10 +1821,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 
 \begin{verbatim}
 ## [[1]]
-## [1] -15.08678
+## [1] -15.08566
 ## 
 ## [[2]]
-## [1] -5.910878
+## [1] -5.671055
 ## 
 ## [[3]]
 ## [1] 20
@@ -1753,10 +1833,10 @@ So when you do drill, you simply do not ?test?. The utility results can be seen 
 ## [1] 30
 ## 
 ## [[5]]
-## [1] -46.14579
+## [1] -45.62958
 ## 
 ## [[6]]
-## [1] -35.26259
+## [1] -35.26649
 ## 
 ## [[7]]
 ## [1] -10

@@ -1,6 +1,12 @@
 introduction
 aim
 motivation
+decision-analysis
+analytics
+descriptive-analytics
+predictive-analytics
+prediction-becomes-more-accurate
+prediction-becomes-cheaper
 getting-started-with
 what-is-bn
 running-example-is-the-family-out
