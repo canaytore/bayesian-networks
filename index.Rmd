@@ -10,6 +10,8 @@ site: bookdown::bookdown_site
 
 ## Aim
 
+Decision Analysis is a treatment of how agents (humans or machines) should make rational decisions. Analytics is gaining popularity as more data becomes available and accessible. Our models and computational tools are catching up to analyze this evergrowing data to make better predictions and turn them into decisions. The objective of this e-book is to introduce prescriptive analytics: using data to make informed, timely and optimal decisions. We will use R and related packages to work on examples extensively.
+
 ## Motivation
 
 - We have an understanding of BNs as graphical models representing probability distributions.
@@ -58,9 +60,37 @@ Types of Analytics
 
 - More accurate prediction is now used for traditional prediction tasks (e.g. forecasting weather or demand) and new problems (e.g. translation and navigation).
 - The drop in cost of prediction has two main effects:
--- creates surprising externalities (e.g. music, video streaming, driving services)
--- increases the value of complements (data, judgement, and action)
+  - creates surprising externalities (e.g. music, video streaming, driving services)
+  - increases the value of complements (data, judgement, and action)
 - If Amazon can predict what consumers want more accurately, they can shift from a shop-then-ship to ship-then-shop strategy.
+
+#### Prediction is not a Decision
+
+- Prediction is a key ingredient in decision making under uncertainty
+- However, prediction is not a decision!
+- The other components are judgment, action, consequences, and preferences
+- Judgment involves determining the relative payoff associated with each possible consequence
+- Judgment gives us an *objective function*
+
+### Prescriptive Analytics
+
+![](data/prescriptive_analytics.JPG)
+
+
+## Data
+
+> "A billion hours ago, modern homo sapiens emerged. A billion minutes ago, Christianity began. A billion seconds ago IBM PC was released. A billion Google searches ago ... was this morning" - Hal Varian, Chief Economist at Google
+
+Three Types of Data
+
+- *training data*: used for training and tuning the parameters
+- *input data*: used for prediction
+- *feedback data*: used to test and improve the prediction
+
+
+
+
+
 
 
 
@@ -689,6 +719,10 @@ lapply(samples_ow2, function(l) mean(l[l$extra_oil_content=="hr",]$utility))
 
 
 # References {.unnumbered}
+
+- Judea	Pearl, Causality: Models,	Reasoning	and	Inference, 2nd Edition,	2009.	
+- Marco	Scutari	and	Denis Jean-Baptiste, Bayesian Networks:	With Examples in R, Chapman	&	Hall/CRC Texts in	Statistical	Science, 2014.
+- Fred S. Roberts, Measurement theory	with applications	to decision	making,	utility, and the social	sciences,	Reading, Mass.:	Addison-Wesley,	1979.
 
 # Appendices {.unnumbered}
 
