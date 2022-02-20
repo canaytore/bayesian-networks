@@ -3,7 +3,7 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">BAYESIAN NETWORKS</a></li>
+        <li><a href="./">Bayesian Networks and Influence Diagrams</a></li>
       after: |
         <li><a href="https://canaytore.github.io/" target="blank">Copyright &copy; Can Aytöre</a></li>
     download: ["pdf", "epub"]
